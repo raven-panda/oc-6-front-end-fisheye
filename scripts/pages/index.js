@@ -1,4 +1,5 @@
-    async function getPhotographersAndMedia() {
+import { photographerTemplate } from  "../templates/photographer.js";
+async function getPhotographersAndMedia() {
         return await fetch("data/photographers.json", {
             method: "GET",
             headers: {
