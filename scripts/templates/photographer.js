@@ -7,6 +7,9 @@ export function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        const link = document.createElement('a');
+        link.href = "photographer.html";
+
         const img = mediaImageTemplate(picture);
         
         const photographerFullNameTitle = createTextElement('h2', name);
@@ -15,12 +18,13 @@ export function photographerTemplate(data) {
         const priceParagraph = createTextElement('p', price + "€/jour", "price");
 
         img.displayMedia(article);
-        photographerFullNameTitle.displayMedia(article);
+        photographerFullNameTitle.displayMedia(link);
+        article.appendChild(link);
         photographerLocationTitle.displayMedia(article);
         taglineParagraph.displayMedia(article);
         priceParagraph.displayMedia(article);
 
-        return (article);
+        return article;
     }
     return { getUserCardDOM }
 }
