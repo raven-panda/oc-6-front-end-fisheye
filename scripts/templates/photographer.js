@@ -10,7 +10,7 @@ export function photographerTemplate(data) {
         const link = document.createElement('a');
         link.href = "photographer.html";
 
-        const img = mediaImageTemplate(picture);
+        const img = mediaImageTemplate(picture, name + "portrait picture");
         
         const photographerFullNameTitle = createTextElement('h2', name);
         const photographerLocationTitle = createTextElement('h3', city + ", " + country);
