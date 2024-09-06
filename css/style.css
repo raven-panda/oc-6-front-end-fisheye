@@ -61,7 +61,7 @@ h1 {
 
 .photographer_section article p {
     font-size: 0.625rem;
-    margin: 0;
+    margin: 3px 0;
 }
 
 .photographer_section article p.price {
