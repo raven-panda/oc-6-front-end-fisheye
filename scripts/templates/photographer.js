@@ -17,7 +17,7 @@ export function photographerTemplate(data) {
         const taglineParagraph = createTextElement('p', tagline);
         const priceParagraph = createTextElement('p', price + "€/jour", "price");
 
-        img.displayMedia(article);
+        img.displayMedia(link);
         photographerFullNameTitle.displayMedia(link);
         article.appendChild(link);
         photographerLocationTitle.displayMedia(article);
