@@ -21,20 +21,20 @@
   color: var(--text-color-primary);
 }
 
-.photographer_section article h2 {
+h2.photographer-card {
   color: var(--title-color-primary);
   font-size: 2.25rem;
   margin: 0;
   margin-top: 20px;
 }
 
-.photographer_section article h3 {
+h3.photographer-card {
   color: var(--title-color-secondary);
   font-size: 0.8125rem;
   margin: 0;
 }
 
-.photographer_section article p {
+p.photographer-card {
   font-size: 0.625rem;
   margin: 3px 0;
 }
@@ -43,7 +43,7 @@
   color: var(--text-color-secondary);
 }
 
-.photographer_section article img {
+img.photographer-card {
   width: 200px;
   height: 200px;
   border-radius: 100%;
