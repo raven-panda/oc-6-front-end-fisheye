@@ -1,14 +1,13 @@
 import { mediaImageTemplate } from "./media.js";
 import { createTextElement } from "./textDom.js";
 export function photographerTemplate(data) {
-    const { name, city, country, tagline, price, portrait } = data;
-
+    const { id, name, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
-        link.href = "photographer.html";
+        link.href = "photographer.html?photographerId=" + id;
         const img = getUserCardPictureDOM();
         
         const userDescription = getUserCardDescriptionDOM();
