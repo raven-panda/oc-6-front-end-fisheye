@@ -2,6 +2,7 @@
 @import url("_photographer.css");
 
 :root {
+    --background-color-primary: #FFFFFF;
     --title-color-primary: #D3573C;
     --title-color-secondary: #901C1C;
     --text-color-primary: #000000;
