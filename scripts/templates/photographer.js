@@ -9,22 +9,52 @@ export function photographerTemplate(data) {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
         link.href = "photographer.html";
-
-        const img = mediaImageTemplate(picture, name);
+        const img = getUserCardPictureDOM();
         
-        const photographerFullNameTitle = createTextElement('h2', name);
-        const photographerLocationTitle = createTextElement('h3', city + ", " + country);
-        const taglineParagraph = createTextElement('p', tagline);
-        const priceParagraph = createTextElement('p', price + "€/jour", "price");
+        const userDescription = getUserCardDescriptionDOM();
+        const userPrice = getUserCardPriceDOM();
 
-        img.displayMedia(link);
-        photographerFullNameTitle.displayMedia(link);
+        img.displayData(link);
         article.appendChild(link);
-        photographerLocationTitle.displayMedia(article);
-        taglineParagraph.displayMedia(article);
-        priceParagraph.displayMedia(article);
+        userDescription.displayData(link, article, article);
+        userPrice.displayData(article);
 
         return article;
     }
-    return { getUserCardDOM }
+
+    function getUserCardDescriptionDOM() {
+        const fullNameTitle = createTextElement('h2', name);
+        const locationTitle = createTextElement('h3', city + ", " + country);
+        const taglineParagraph = createTextElement('p', tagline);
+
+        function displayData(fullNameParent, locationParent, taglineParent) {
+            fullNameTitle.displayMedia(fullNameParent);
+            locationTitle.displayMedia(locationParent);
+            taglineParagraph.displayMedia(taglineParent);
+        }
+
+        return { displayData }
+    }
+
+    function getUserCardPictureDOM() {
+        const img = mediaImageTemplate(picture, name);
+
+        function displayData(parent) {
+            img.displayMedia(parent);
+        }
+        
+        return { displayData }
+    }
+
+    function getUserCardPriceDOM() {
+        const priceParagraph = createTextElement('p', price + "€/jour", "price");
+
+        function displayData(parent) {
+            priceParagraph.displayMedia(parent);
+        }
+
+        return { displayData }
+    }
+
+    return { getUserCardDOM, getUserCardDescriptionDOM, getUserCardPictureDOM }
 }
