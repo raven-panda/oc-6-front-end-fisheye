@@ -14,10 +14,27 @@
       </a>
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <section class="photograph-header">
         <article class="photograph_description"></article>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+      </section>
+      <section class="photograph-portfolio">
+        <form action="#" id="photograph-filter-form">
+          <label for="photograph-filter">Trier par</label>
+          <div class="photograph-filter-container">
+            <select id="photograph-filter" name="photographFilter" hidden>
+              <option value="popular">Popularité</option>
+              <option value="date">Date</option>
+              <option value="title">Titre</option>
+            </select>
+            <div class="filter-options">
+              <div class="selected" data-value="popular">Popularité</div>
+              <div data-value="date">Date</div>
+              <div data-value="title">Titre</div>
+            </div>
+          </div>
+        </form>
+      </section>
     </main>
     <div id="contact_modal">
 			<div class="modal">
