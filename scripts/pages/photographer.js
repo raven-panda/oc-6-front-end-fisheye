@@ -31,9 +31,9 @@ async function photographerPage() {
       filterSelectContainer.classList.toggle("active");
       isFilterActive = !isFilterActive;
 
-      if (isFilterActive) return;
+      if (isFilterActive) return;      
 
-      const value = e.target?.dataset?.value;
+      const value = e.target?.tagName === "SPAN" ? e.target.parentNode?.dataset?.value : e.target?.dataset?.value;
       if (value) filterSelect.value = value;
 
       const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > div");
