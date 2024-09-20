@@ -21,21 +21,19 @@
         <article class="photograph_description"></article>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
-      <section class="photograph-portfolio">
+      <section class="photograph-album">
         <form action="#" id="photograph-filter-form">
           <label for="photograph-filter">Trier par</label>
           <div class="photograph-filter-container">
-            <select id="photograph-filter" name="photographFilter" hidden>
-              <option value="popular">Popularité</option>
-              <option value="date">Date</option>
-              <option value="title">Titre</option>
-            </select>
-            <div class="filter-options">
+            <button id="photograph-filter" name="photographFilter" type="button" aria-haspopup="listbox" aria-expanded="false" role="button">
+              <span id="photograph-filter-label">Popularité</span>
               <i class="fa-solid fa-chevron-down fa-lg"></i>
-              <div class="selected" data-value="popular"><span>Popularité</span></div>
-              <div data-value="date"><span>Date</span></div>
-              <div data-value="title"><span>Titre</span></div>
-            </div>
+            </button>
+            <ul class="filter-options" id="filter-options" role="listbox" aria-activedescendant="filter-popular" aria-labelledby="photograph-filter">
+              <li role="option" id="filter-popular" aria-selected="true" data-value="popular"><span>Popularité</span></li>
+              <li role="option" id="filter-date" aria-selected="false" data-value="date"><span>Date</span></li>
+              <li role="option" id="filter-title" aria-selected="false" data-value="title"><span>Titre</span></li>
+            </ul>
           </div>
         </form>
       </section>

@@ -2,6 +2,10 @@
     display: none;
 }
 
+ul, li {
+    all: unset;
+}
+
 .photograph-header {
     background-color: #FAFAFA;
     margin: 0 100px;
@@ -25,6 +29,10 @@
     font-size: 1.125rem;
     margin: 0;
     margin-top: 16px;
+}
+
+.photograph-album {
+    margin: 0 100px;
 }
 
 .contact_button {
@@ -79,20 +87,39 @@ form#photograph-filter-form .photograph-filter-container .filter-options > .fa-c
     z-index: 1;
 }
 
-form#photograph-filter-form .photograph-filter-container.active .filter-options > .fa-chevron-down {
-    transform: rotate(180deg);
-}
-
-form#photograph-filter-form .photograph-filter-container .filter-options > div {
+form#photograph-filter-form .photograph-filter-container .filter-options > li, button#photograph-filter {
     padding: 0 10px;
     background: var(--background-color-secondary);
     color: var(--text-color-tertiary);
     order: 2;
-    display: none;
     position: relative;
 }
 
-form#photograph-filter-form .photograph-filter-container .filter-options > div > span {
+button#photograph-filter {
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    border: none;
+    padding: 20px;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+button#photograph-filter[aria-expanded="true"] > .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options > li {
+    display: none;
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options > li[aria-selected="true"] {
+    order: 1;
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options > li > span {
     font-weight: 700;
     font-size: 1.125rem;
     padding: 20px 10px;
@@ -101,16 +128,11 @@ form#photograph-filter-form .photograph-filter-container .filter-options > div >
     width: 100%;
 }
 
-form#photograph-filter-form .photograph-filter-container .filter-options > div:not(.selected) > span {
+form#photograph-filter-form .photograph-filter-container .filter-options > li:not(.selected) > span {
     border-top: 1px solid var(--background-color-primary);
 }
 
-form#photograph-filter-form .photograph-filter-container .filter-options > div.selected {
-    display: block;
-    order: 1;
-}
-
-form#photograph-filter-form .photograph-filter-container.active .filter-options > div {
+form#photograph-filter-form .photograph-filter-container.active .filter-options > li {
     display: block;
 }
 
@@ -118,6 +140,13 @@ form#photograph-filter-form .photograph-filter-container select {
     padding: 20px;
     padding-right: 60px;
     z-index: -2;
+}
+
+button#photograph-filter {
+    position: absolute;
+    z-index: 3;
+    min-width: 170px;
+    min-height: 60px;
 }
 
 /** Modal style **/

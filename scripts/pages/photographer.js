@@ -9,6 +9,12 @@ async function photographerPage() {
   const photographerId = params.get("photographerId");
   let isFilterActive = false;
 
+  const filterLabels = {
+    popular: "Popularité",
+    date: "Date",
+    title: "Titre"
+  }
+
   function displayPhotographerHeaderData(photographer) {
     const photographerHeader = document.querySelector(".photograph-header");
     const photoDescriptionBox = photographerHeader.querySelector(".photograph_description");
@@ -24,23 +30,31 @@ async function photographerPage() {
 
   function createEvents() {
     const filterSelectContainer = document.querySelector(".photograph-filter-container");
-    const filterSelect = filterSelectContainer.querySelector("#photograph-filter");
-    filterSelect.value = "popular";
+    const filterOptionsBox = filterSelectContainer.querySelector(".filter-options");
+    /** @type {HTMLButtonElement} */
+    const filterButton = document.querySelector("#photograph-filter");
+    const filterButtonLabel = document.querySelector("#photograph-filter-label");
+    filterButtonLabel.textContent = filterLabels.popular;
     
     function selectFilterEvent(e) {
       filterSelectContainer.classList.toggle("active");
       isFilterActive = !isFilterActive;
+      filterButton.ariaExpanded = isFilterActive;
 
-      if (isFilterActive) return;      
+      if (isFilterActive) return;
 
       const value = e.target?.tagName === "SPAN" ? e.target.parentNode?.dataset?.value : e.target?.dataset?.value;
-      if (value) filterSelect.value = value;
+      if (value) filterButton.value = value;
 
-      const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > div");
-      filterOptions.forEach(option => option.dataset.value === filterSelect.value ? option.classList.add("selected") : option.classList.remove("selected"));
+      const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > li");
+      filterOptions.forEach(option => option.ariaSelected = option.dataset.value === filterButton.value);
+      
+      if (value) filterButtonLabel.textContent = filterLabels[value];
+      
+      filterButton.setAttribute("aria-activedescendant", "filter-" + value);
     }
 
-    filterSelectContainer.addEventListener("click", selectFilterEvent)
+    filterSelectContainer.addEventListener("click", selectFilterEvent);
   }
 
   function displayData(photographer) {
