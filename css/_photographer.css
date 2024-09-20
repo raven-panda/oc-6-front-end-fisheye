@@ -32,7 +32,7 @@ ul, li {
 }
 
 .photograph-album {
-    margin: 0 100px;
+    margin: 9px 100px 0;
 }
 
 .contact_button {
@@ -66,13 +66,17 @@ form#photograph-filter-form .photograph-filter-container {
     min-width: 170px;
 }
 
-form#photograph-filter-form .photograph-filter-container .filter-options {
+form#photograph-filter-form .photograph-filter-container .filter-options, button#photograph-filter {
     display: flex;
-    flex-direction: column;
-    position: absolute;
+    cursor: pointer;
     background: var(--background-color-secondary);
     color: var(--text-color-tertiary);
     min-width: 170px;
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options {
+    flex-direction: column;
+    position: absolute;
     top: 0;
     left: 0;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -80,24 +84,8 @@ form#photograph-filter-form .photograph-filter-container .filter-options {
     overflow: hidden;
 }
 
-form#photograph-filter-form .photograph-filter-container .filter-options > .fa-chevron-down {
-    top: calc(30px - 0.0625rem);
-    right: 7%;
-    position: absolute;
-    z-index: 1;
-}
-
-form#photograph-filter-form .photograph-filter-container .filter-options > li, button#photograph-filter {
-    padding: 0 10px;
-    background: var(--background-color-secondary);
-    color: var(--text-color-tertiary);
-    order: 2;
-    position: relative;
-}
-
 button#photograph-filter {
     font-family: "DM Sans", sans-serif;
-    display: flex;
     border: none;
     padding: 20px;
     border-radius: 5px;
@@ -105,6 +93,17 @@ button#photograph-filter {
     align-items: center;
     font-weight: 700;
     font-size: 1.125rem;
+    position: absolute;
+    z-index: 3;
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options > li {
+    padding: 0 10px;
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options > li, button#photograph-filter {
+    order: 2;
+    position: relative;
 }
 
 button#photograph-filter[aria-expanded="true"] > .fa-chevron-down {
@@ -140,13 +139,6 @@ form#photograph-filter-form .photograph-filter-container select {
     padding: 20px;
     padding-right: 60px;
     z-index: -2;
-}
-
-button#photograph-filter {
-    position: absolute;
-    z-index: 3;
-    min-width: 170px;
-    min-height: 60px;
 }
 
 /** Modal style **/
