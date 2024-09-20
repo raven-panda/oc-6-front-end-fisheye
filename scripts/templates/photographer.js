@@ -1,4 +1,4 @@
-import { mediaImageTemplate } from "./media.js";
+import { mediaTemplate } from "./media.js";
 import { createTextElement } from "./textDom.js";
 export function photographerTemplate(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
@@ -36,7 +36,8 @@ export function photographerTemplate(data) {
     }
 
     function getUserCardPictureDOM() {
-        const img = mediaImageTemplate(picture, name, "photographer-card");
+        const media = mediaTemplate();
+        const img = media.mediaImageTemplate(picture, name, "photographer-card");
 
         function displayData(parent) {
             img.displayMedia(parent);

@@ -1,12 +1,21 @@
-export function mediaImageTemplate(src, alt, ...classList) {
-  const img = document.createElement('img');
-  img.setAttribute("src", src)
-  img.setAttribute("alt", alt);
-  img.classList.add(...classList);
+export function mediaTemplate() {
 
-  function displayMedia(parent) {
-    parent.appendChild(img);
+  function mediaImageTemplate(src, alt, ...classList) {
+    const img = document.createElement('img');
+    img.setAttribute("src", src)
+    img.setAttribute("alt", alt);
+    img.classList.add(...classList);
+  
+    function displayMedia(parent) {
+      parent.appendChild(img);
+    }
+  
+    return { displayMedia };
+  }
+  
+  function mediaVideoTemplate() {
+    /** @TODO */ 
   }
 
-  return { displayMedia };
+  return { mediaImageTemplate, mediaVideoTemplate }
 }
