@@ -54,7 +54,37 @@ async function photographerPage() {
       filterButton.setAttribute("aria-activedescendant", "filter-" + value);
     }
 
+    function selectFilterKeydownEvent(e) {      
+      if (e.code === "Space" || e.code === "Enter") {
+        filterSelectContainer.classList.toggle("active");
+        isFilterActive = !isFilterActive;
+        filterButton.ariaExpanded = isFilterActive;
+      }
+
+      if (isFilterActive) return;
+
+      const value = e.target?.dataset?.value;
+      if (!value) return;
+      filterButton.value = value;
+
+      const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > li");
+      filterOptions.forEach(option => {
+        if (option.dataset.value === filterButton.value) {
+          option.ariaSelected = true;
+          option.removeAttribute("tabindex");
+        } else {
+          option.ariaSelected = false;
+          option.setAttribute("tabindex", "0");
+        }
+      });      
+
+      filterButtonLabel.textContent = filterLabels[value];
+      
+      filterButton.setAttribute("aria-activedescendant", "filter-" + value);
+    }
+
     filterSelectContainer.addEventListener("click", selectFilterEvent);
+    filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
   }
 
   function displayData(photographer) {

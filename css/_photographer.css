@@ -114,6 +114,19 @@ form#photograph-filter-form .photograph-filter-container .filter-options > li {
     display: none;
 }
 
+.photograph-filter-container {
+    outline: none;
+}
+
+form#photograph-filter-form .photograph-filter-container .filter-options > li:focus,
+form#photograph-filter-form .photograph-filter-container:focus button#photograph-filter,
+form#photograph-filter-form .photograph-filter-container .filter-options > li:hover,
+form#photograph-filter-form button#photograph-filter:hover,
+button.contact_button:hover, button.contact_button:focus {
+    outline: none;
+    background: var(--background-color-secondary-focus);
+}
+
 form#photograph-filter-form .photograph-filter-container .filter-options > li[aria-selected="true"] {
     order: 1;
 }
@@ -139,6 +152,32 @@ form#photograph-filter-form .photograph-filter-container select {
     padding: 20px;
     padding-right: 60px;
     z-index: -2;
+}
+
+/** Photograph album style **/
+
+.photograph-album-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 95px;
+    margin-top: 40px;
+}
+
+.photograph-album-content img, .photograph-album-content video {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.photograph-album-item .photograph-album-item-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.photograph-album-item .photograph-album-item-description h2 {
+    margin: 0;
 }
 
 /** Modal style **/
