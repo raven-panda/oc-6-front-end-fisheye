@@ -157,17 +157,18 @@ form#photograph-filter-form .photograph-filter-container select {
 /** Photograph album style **/
 
 .photograph-album-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10%, 350px));
+    gap: 50px;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 55px;
     margin-top: 40px;
 }
 
-.photograph-album-content img, .photograph-album-content video {
-    width: 350px;
+.photograph-album-content img, .photograph-album-content video, .photograph-album-content img, .photograph-album-content img {
+    width: 100%;
     height: 300px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .photograph-album-item .photograph-album-item-description {
