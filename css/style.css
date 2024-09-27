@@ -23,6 +23,12 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    max-width: 1440px;
+}
+
+header, main {
+    max-width: 1440px;
+    margin: auto;
 }
 
 h1 {
