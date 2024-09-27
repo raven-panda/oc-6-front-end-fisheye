@@ -67,6 +67,7 @@ async function photographerPage() {
 
     function selectFilterKeydownEvent(e) {      
       if (e.code === "Space" || e.code === "Enter") {
+        e.preventDefault();
         filterSelectContainer.classList.toggle("active");
         isFilterActive = !isFilterActive;
         filterButton.ariaExpanded = isFilterActive;

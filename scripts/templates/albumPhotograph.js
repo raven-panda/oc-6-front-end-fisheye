@@ -8,6 +8,8 @@ export function albumPhotographTemplate(data) {
   function getAlbumItemDOM() {
     const articleDOM = document.createElement('article');
     articleDOM.classList.add("photograph-album-item");
+    const mediaLinkDOM = document.createElement('a');
+    mediaLinkDOM.href = `#`;
     const mediaDOM = getAlbumItemMediaDOM();
 
     const descriptionDOM = document.createElement('div');
@@ -19,10 +21,12 @@ export function albumPhotographTemplate(data) {
     buttonDOM.classList.add("photograph-album_like-button");
 
     const heartIconDOM = createTextElement('i', '', "fa-solid", "fa-heart", "fa-xl");
+    heartIconDOM.element.setAttribute('aria-label', "likes");
 
     function displayData(parent) {
       parent.appendChild(articleDOM);
-      mediaDOM.displayData(articleDOM);
+      articleDOM.appendChild(mediaLinkDOM);
+      mediaDOM.displayData(mediaLinkDOM);
       articleDOM.appendChild(descriptionDOM);
       itemNameDOM.displayMedia(descriptionDOM);
       itemLikesDOM.displayMedia(descriptionDOM);
