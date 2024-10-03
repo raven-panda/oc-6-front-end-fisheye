@@ -15,7 +15,7 @@ export function mediaTemplate() {
   
   function mediaVideoTemplate(src, alt, type, ...classList) {
     const video = document.createElement('video');
-    video.setAttribute("controls", true);
+    /** @TODO : video must play on hover */
     if (classList && classList.length) video.classList.add(...classList);
 
     const source = document.createElement('source');
