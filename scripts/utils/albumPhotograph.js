@@ -28,10 +28,10 @@ export default function AlbumPhotographUtils() {
     if (!mediaId || !media)
       return;
 
-    urlUtils.setParam("mediaId", mediaId);
+    urlUtils.setParam("mediaId", mediaId); // find a way to use this instead of dataset
     const photographerId = urlUtils.getParam("photographerId");
 
-    lightboxModalUtils.displayData(`assets/albums/${photographerId}/${media.image || media.video}`, media.title, media.id);
+    lightboxModalUtils.displayData();
   }
 
   return { createEvents }

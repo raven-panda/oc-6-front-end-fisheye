@@ -3,8 +3,12 @@ export default function LightboxModalUtils() {
   const bodyContainer = document.querySelector("body");
   const pictureElement = lightboxModal.querySelector(".lightbox_modal-picture-navigation img");
   const closeModalButton = lightboxModal.querySelector("#lightbox_modal-close-btn");
+  let medias;
+  let currentMedia;
 
-  function displayData(src, alt, id) {
+  function displayData(_medias, selected) {
+    medias = _medias;`assets/albums/${photographerId}/${media.image || media.video}`, media.title, media.id
+
     lightboxModal.classList.add("active");
     bodyContainer.classList.add("modal-open");
 
@@ -21,6 +25,10 @@ export default function LightboxModalUtils() {
     closeModalButton.addEventListener("click", closeModal);
   }
 
+  function nextItem() {
+
+  }
+ 
   return { displayData, closeModal, createEvents }
 
 }
