@@ -44,6 +44,7 @@ export default function PhotographerUtils() {
     photographersMedias = _photographersMedias;
 
     createAlbumEvents();
+    lightboxModalUtils.createEvents();
   }
 
   function createAlbumEvents() {
