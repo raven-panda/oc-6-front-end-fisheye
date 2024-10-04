@@ -8,6 +8,7 @@ export function albumPhotographTemplate(data) {
   function getAlbumItemDOM() {
     const articleDOM = document.createElement('article');
     articleDOM.classList.add("photograph-album-item");
+    articleDOM.dataset.pictureid = id;
     const mediaLinkDOM = document.createElement('a');
     mediaLinkDOM.href = `#`;
     const mediaDOM = getAlbumItemMediaDOM();
@@ -34,7 +35,7 @@ export function albumPhotographTemplate(data) {
       descriptionDOM.appendChild(buttonDOM);
     }
 
-    return { displayData }
+    return { articleDOM, displayData }
   }
 
   function getAlbumItemMediaDOM() {

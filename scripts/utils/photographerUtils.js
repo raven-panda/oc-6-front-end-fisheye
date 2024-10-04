@@ -36,6 +36,19 @@ export default function PhotographerUtils() {
     filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
   }
 
+  function createAlbumEvent(element, searchParams) {
+    const link = element.querySelector("a");
+    link.addEventListener("click", (e) => selectAlbumtItemEvent(e, searchParams))
+  }
+
+  function selectAlbumtItemEvent(e, /** @type {URLSearchParams} */ searchParams) {
+    e.preventDefault();
+    const pictureId = e.currentTarget?.parentNode?.dataset?.pictureid;
+    if (!pictureId) return;
+      
+    searchParams.set("pictureId", pictureId);
+  }
+
   function closeOnClickOutside(e) {        
     if (isFilterActive && (e.target.parentNode != filterButton && e.target.parentNode != filterSelectContainer)) toggleFilters();
   }
@@ -95,15 +108,15 @@ export default function PhotographerUtils() {
   }
 
   function togglePageItemsTabIndex() {
-    const clickableLinks = albumPhotograph.querySelectorAll(".photograph-album-item a");
+    const clickableAlbumItems = albumPhotograph.querySelectorAll(".photograph-album-item a");
     const likesButton = albumPhotograph.querySelectorAll(".photograph-album-item .photograph-album-item-description .photograph-album_like-button");
     const logo = document.querySelector(".logo");
     const contactButton = document.querySelector(".contact_button");
-    const elements = [...clickableLinks, ...likesButton, logo, contactButton];
+    const elements = [...clickableAlbumItems, ...likesButton, logo, contactButton];
 
-    elements.forEach(link => link.setAttribute("tabindex", isFilterActive ? "-1" : "0"))
+    elements.forEach(link => link.setAttribute("tabindex", isFilterActive ? "-1&" : "0"))
   }
 
-  return { createEvents }
+  return { createEvents, createAlbumEvent }
 
 }

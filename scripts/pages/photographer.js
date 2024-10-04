@@ -33,6 +33,7 @@ async function photographerPage() {
       const albumItemDOM = albumPhotographModel.getAlbumItemDOM();
 
       albumItemDOM.displayData(albumPhotograph);
+      photographerUtils.createAlbumEvent(albumItemDOM.articleDOM, params);
     })
   }
 
