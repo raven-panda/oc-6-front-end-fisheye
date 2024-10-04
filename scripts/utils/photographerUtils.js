@@ -1,5 +1,5 @@
+import AlbumPhotographUtils from "./albumPhotograph.js";
 import LightboxModalUtils from "./lightboxModal.js";
-import UrlUtils from "./urlUtils.js";
 
 export default function PhotographerUtils() {
   const filterSelectContainer = document.querySelector(".photograph-filter-container");
@@ -7,9 +7,8 @@ export default function PhotographerUtils() {
   const filterButtonLabel = document.querySelector("#photograph-filter-label");
   const filterOptionListContainer = filterSelectContainer.querySelector("#filter-options");
   const albumPhotograph = document.querySelector(".photograph-album-content");
-  const urlUtils = UrlUtils();
+  const albumPhotographUtils = AlbumPhotographUtils();
   const lightboxModalUtils = LightboxModalUtils();
-  let photographersMedias;
 
   let isFilterActive = false;
 
@@ -34,42 +33,15 @@ export default function PhotographerUtils() {
     filterOptionListContainer.setAttribute("aria-activedescendant", "filter-" + filterLabels.popular.value);
   }
 
-  function createEvents(_photographersMedias) {
+  function createEvents(photographersMedias) {
     initializeValues();
 
     document.addEventListener("click", closeOnClickOutside);
     filterSelectContainer.addEventListener("click", selectFilterEvent);
     filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
 
-    photographersMedias = _photographersMedias;
-
-    createAlbumEvents();
     lightboxModalUtils.createEvents();
-  }
-
-  function createAlbumEvents() {
-    const clickableAlbumItems = albumPhotograph.querySelectorAll(".photograph-album-item a");
-    clickableAlbumItems.forEach(link => {
-      link.addEventListener("click", selectAlbumtItemEvent);
-      link.addEventListener("keydown", selectAlbumtItemEvent);
-    });
-  }
-
-  function selectAlbumtItemEvent(e) {       
-    if (e.code && (e.code !== "Space" && e.code !== "Enter")) return;
-      
-    e.preventDefault();
-
-    const mediaId = e.currentTarget?.parentNode?.dataset?.mediaId;
-    let media = photographersMedias.find(media => mediaId && media.id === parseInt(mediaId));
-    
-    if (!mediaId || !media)
-      return;
-
-    urlUtils.setParam("mediaId", mediaId);
-    const photographerId = urlUtils.getParam("photographerId");
-
-    lightboxModalUtils.displayData(`assets/albums/${photographerId}/${media.image || media.video}`, media.title, media.id);
+    albumPhotographUtils.createEvents(photographersMedias);
   }
 
   function closeOnClickOutside(e) {        
