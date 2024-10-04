@@ -33,14 +33,13 @@ async function photographerPage() {
       const albumItemDOM = albumPhotographModel.getAlbumItemDOM();
 
       albumItemDOM.displayData(albumPhotograph);
-      photographerUtils.createAlbumEvent(albumItemDOM.articleDOM, params);
     })
   }
 
   function displayData(photographer, photographersMedias) {
     displayPhotographerHeaderData(photographer);
     displayPhotographerAlbumData(photographersMedias);
-    photographerUtils.createEvents();
+    photographerUtils.createEvents(photographersMedias);
   }
 
   const photographer = await photographerService.getPhotographerById(photographerId);

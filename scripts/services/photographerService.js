@@ -33,5 +33,10 @@ export function PhotographerService() {
     return photographersAndMedias.media.filter(media => media.photographerId == id);
   }
 
+  async function getMediaById(mediaId) {
+    const photographersAndMedias = await getPhotographersAndMedia();    
+    return photographersAndMedias.media.find(media => media.id == mediaId);
+  }
+
   return { getPhotographers, getPhotographerById, getPhotographersMedias };
 }

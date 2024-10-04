@@ -1,9 +1,15 @@
+import LightboxModalUtils from "./lightboxModal.js";
+import UrlUtils from "./urlUtils.js";
+
 export default function PhotographerUtils() {
   const filterSelectContainer = document.querySelector(".photograph-filter-container");
   const filterButton = document.querySelector("#photograph-filter");
   const filterButtonLabel = document.querySelector("#photograph-filter-label");
   const filterOptionListContainer = filterSelectContainer.querySelector("#filter-options");
   const albumPhotograph = document.querySelector(".photograph-album-content");
+  const urlUtils = UrlUtils();
+  const lightboxModalUtils = LightboxModalUtils();
+  let photographersMedias;
 
   let isFilterActive = false;
 
@@ -28,25 +34,41 @@ export default function PhotographerUtils() {
     filterOptionListContainer.setAttribute("aria-activedescendant", "filter-" + filterLabels.popular.value);
   }
 
-  function createEvents() {
+  function createEvents(_photographersMedias) {
     initializeValues();
 
     document.addEventListener("click", closeOnClickOutside);
     filterSelectContainer.addEventListener("click", selectFilterEvent);
     filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
+
+    photographersMedias = _photographersMedias;
+
+    createAlbumEvents();
   }
 
-  function createAlbumEvent(element, searchParams) {
-    const link = element.querySelector("a");
-    link.addEventListener("click", (e) => selectAlbumtItemEvent(e, searchParams))
+  function createAlbumEvents() {
+    const clickableAlbumItems = albumPhotograph.querySelectorAll(".photograph-album-item a");
+    clickableAlbumItems.forEach(link => {
+      link.addEventListener("click", selectAlbumtItemEvent);
+      link.addEventListener("keydown", selectAlbumtItemEvent);
+    });
   }
 
-  function selectAlbumtItemEvent(e, /** @type {URLSearchParams} */ searchParams) {
-    e.preventDefault();
-    const pictureId = e.currentTarget?.parentNode?.dataset?.pictureid;
-    if (!pictureId) return;
+  function selectAlbumtItemEvent(e) {       
+    if (e.code && (e.code !== "Space" && e.code !== "Enter")) return;
       
-    searchParams.set("pictureId", pictureId);
+    e.preventDefault();
+
+    const mediaId = e.currentTarget?.parentNode?.dataset?.mediaId;
+    let media = photographersMedias.find(media => mediaId && media.id === parseInt(mediaId));
+    
+    if (!mediaId || !media)
+      return;
+
+    urlUtils.setParam("mediaId", mediaId);
+    const photographerId = urlUtils.getParam("photographerId");
+
+    lightboxModalUtils.displayData(`assets/albums/${photographerId}/${media.image || media.video}`, media.title, media.id);
   }
 
   function closeOnClickOutside(e) {        
@@ -117,6 +139,6 @@ export default function PhotographerUtils() {
     elements.forEach(link => link.setAttribute("tabindex", isFilterActive ? "-1&" : "0"))
   }
 
-  return { createEvents, createAlbumEvent }
+  return { createEvents }
 
 }

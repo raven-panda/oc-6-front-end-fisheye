@@ -8,7 +8,7 @@ export function albumPhotographTemplate(data) {
   function getAlbumItemDOM() {
     const articleDOM = document.createElement('article');
     articleDOM.classList.add("photograph-album-item");
-    articleDOM.dataset.pictureid = id;
+    articleDOM.dataset.mediaId = id;
     const mediaLinkDOM = document.createElement('a');
     mediaLinkDOM.href = `#`;
     const mediaDOM = getAlbumItemMediaDOM();
