@@ -12,8 +12,8 @@
   </head>
   <body>
     <header>
-      <a href="/index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page">
+      <a href="/index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Fisheye Home Page">
       </a>
     </header>
     <main id="main">
@@ -26,7 +26,7 @@
           <label for="photograph-filter">Trier par</label>
           <div class="photograph-filter-container" tabindex="0">
             <button id="photograph-filter" name="photographFilter" tabindex="-1" type="button" aria-haspopup="listbox" aria-expanded="false" role="button">
-              <span id="photograph-filter-label">Popularité</span>
+              <span id="photograph-filter-label"></span>
               <i class="fa-solid fa-chevron-down fa-lg"></i>
             </button>
             <ul class="filter-options" id="filter-options" role="listbox" aria-activedescendant="filter-popular" aria-labelledby="photograph-filter">
@@ -39,6 +39,14 @@
         <section class="photograph-album-content"></section>
       </section>
     </main>
+    <!-- <div id="lightbox_modal">
+      <div class="lightbox_modal-picture-navigation">
+        <button type="button"></button>
+        <img src="#" alt="">
+        <button type="button"></button>
+      </div>
+      <p></p>
+    </div> -->
     <div class="modal" id="contact_modal">
       <div class="modal-content">
         <header>

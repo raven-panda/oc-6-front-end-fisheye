@@ -3,18 +3,15 @@
 import { PhotographerService } from "../services/photographerService.js";
 import { albumPhotographTemplate } from "../templates/albumPhotograph.js";
 import { photographerTemplate } from "../templates/photographer.js";
+import PhotographerUtils from "../utils/photographerUtils.js";
 
 async function photographerPage() {
   const params = new URLSearchParams(document.location.search);
   const photographerService = PhotographerService();
+  const photographerUtils = PhotographerUtils();
   const photographerId = params.get("photographerId");
-  let isFilterActive = false;
 
-  const filterLabels = {
-    popular: "Popularité",
-    date: "Date",
-    title: "Titre"
-  }
+  if (!photographerId) window.location = "./index.html";
 
   function displayPhotographerHeaderData(photographer) {
     const photographerHeader = document.querySelector(".photograph-header");
@@ -39,70 +36,10 @@ async function photographerPage() {
     })
   }
 
-  function createEvents() {
-    const filterSelectContainer = document.querySelector(".photograph-filter-container");
-    const filterOptionsBox = filterSelectContainer.querySelector(".filter-options");
-    /** @type {HTMLButtonElement} */
-    const filterButton = document.querySelector("#photograph-filter");
-    const filterButtonLabel = document.querySelector("#photograph-filter-label");
-    filterButtonLabel.textContent = filterLabels.popular;
-    
-    function selectFilterEvent(e) {
-      filterSelectContainer.classList.toggle("active");
-      isFilterActive = !isFilterActive;
-      filterButton.ariaExpanded = isFilterActive;
-
-      if (isFilterActive) return;
-
-      const value = e.target?.tagName === "SPAN" ? e.target.parentNode?.dataset?.value : e.target?.dataset?.value;
-      if (value) filterButton.value = value;
-
-      const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > li");
-      filterOptions.forEach(option => option.ariaSelected = option.dataset.value === filterButton.value);
-      
-      if (value) filterButtonLabel.textContent = filterLabels[value];
-      
-      filterButton.setAttribute("aria-activedescendant", "filter-" + value);
-    }
-
-    function selectFilterKeydownEvent(e) {      
-      if (e.code === "Space" || e.code === "Enter") {
-        e.preventDefault();
-        filterSelectContainer.classList.toggle("active");
-        isFilterActive = !isFilterActive;
-        filterButton.ariaExpanded = isFilterActive;
-      }
-
-      if (isFilterActive) return;
-
-      const value = e.target?.dataset?.value;
-      if (!value) return;
-      filterButton.value = value;
-
-      const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > li");
-      filterOptions.forEach(option => {
-        if (option.dataset.value === filterButton.value) {
-          option.ariaSelected = true;
-          option.removeAttribute("tabindex");
-        } else {
-          option.ariaSelected = false;
-          option.setAttribute("tabindex", "0");
-        }
-      });      
-
-      filterButtonLabel.textContent = filterLabels[value];
-      
-      filterButton.setAttribute("aria-activedescendant", "filter-" + value);
-    }
-
-    filterSelectContainer.addEventListener("click", selectFilterEvent);
-    filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
-  }
-
   function displayData(photographer, photographersMedias) {
     displayPhotographerHeaderData(photographer);
     displayPhotographerAlbumData(photographersMedias);
-    createEvents();
+    photographerUtils.createEvents();
   }
 
   const photographer = await photographerService.getPhotographerById(photographerId);
