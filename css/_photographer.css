@@ -197,7 +197,7 @@ form#photograph-filter-form .photograph-filter-container select {
 
 .modal {
     display: none;
-    position: absolute;
+    position: fixed;
     background-color: var(--background-color-primary);
     top: 0;
     z-index: 99;
