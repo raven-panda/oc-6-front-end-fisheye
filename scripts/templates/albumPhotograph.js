@@ -1,5 +1,5 @@
 import { mediaTemplate } from "./media.js";
-import { createTextElement } from "./textDom.js";
+import { createSvgElement, createTextElement } from "./elementDom.js";
 
 export function albumPhotographTemplate(data) {
   const { id, photographerId, title, image, video, likes } = data;
@@ -21,8 +21,7 @@ export function albumPhotographTemplate(data) {
     const buttonDOM = document.createElement('button');
     buttonDOM.classList.add("photograph-album_like-button");
 
-    const heartIconDOM = createTextElement('i', '', "fa-solid", "fa-heart", "fa-xl");
-    heartIconDOM.element.setAttribute('aria-label', "likes");
+    const heartIconSvg = createSvgElement(19, 19, "0 0 19 19", ["M9.5 18.35L8.23125 17.03C3.725 12.36 0.75 9.28 0.75 5.5C0.75 2.42 2.8675 0 5.5625 0C7.085 0 8.54625 0.81 9.5 2.09C10.4537 0.81 11.915 0 13.4375 0C16.1325 0 18.25 2.42 18.25 5.5C18.25 9.28 15.275 12.36 10.7688 17.04L9.5 18.35Z"])
 
     function displayData(parent) {
       parent.appendChild(articleDOM);
@@ -31,7 +30,7 @@ export function albumPhotographTemplate(data) {
       articleDOM.appendChild(descriptionDOM);
       itemNameDOM.displayMedia(descriptionDOM);
       itemLikesDOM.displayMedia(descriptionDOM);
-      heartIconDOM.displayMedia(buttonDOM);
+      heartIconSvg.displayMedia(buttonDOM);
       descriptionDOM.appendChild(buttonDOM);
     }
 
