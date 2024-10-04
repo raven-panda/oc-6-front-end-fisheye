@@ -102,7 +102,7 @@ form#photograph-filter-form .photograph-filter-container .filter-options > li, b
     position: relative;
 }
 
-button#photograph-filter[aria-expanded="true"] > .fa-chevron-down {
+button#photograph-filter[aria-expanded="false"] > svg {
     transform: rotate(180deg);
 }
 
@@ -198,22 +198,29 @@ form#photograph-filter-form .photograph-filter-container select {
 .modal {
     display: none;
     position: absolute;
+    background-color: var(--background-color-primary);
     top: 0;
     z-index: 99;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal.active {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    min-height: 100%;
+}
+
+.modal .modal-content {
+    margin: auto;
+    position: relative;
 }
 
 #contact_modal .modal-content {
     background-color: #DB8876;
     align-items: center;
     width: 50%;
-    margin: auto;
     justify-content: space-between;
     border-radius: 5px;
     padding: 35px;
@@ -259,4 +266,67 @@ form#photograph-filter-form .photograph-filter-container select {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+#lightbox_modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+
+#lightbox_modal button, #lightbox_modal a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--background-color-secondary);
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    transition: background-color 0.1s ease-in-out;
+}
+#lightbox_modal button {
+    padding: 12px;
+}
+#lightbox_modal a {
+    padding: 4px;
+
+}
+
+#lightbox_modal button:hover, #lightbox_modal a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+} 
+
+.lightbox_modal-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.lightbox_modal-picture-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.lightbox_modal-picture-navigation img {
+    display: block;
+    width: calc(750px * calc(1050 / 900));
+    height: 750px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+
+.lightbox_modal-picture-navigation .picture-nav.previous-picture {
+    transform: rotate(-90deg);
+}
+.lightbox_modal-picture-navigation .picture-nav.next-picture {
+    transform: rotate(90deg);
+}
+
+.lightbox_modal-picture-title {
+    margin: 0;
 }

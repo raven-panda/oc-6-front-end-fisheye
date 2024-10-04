@@ -27,7 +27,9 @@
           <div class="photograph-filter-container" tabindex="0">
             <button id="photograph-filter" name="photographFilter" tabindex="-1" type="button" aria-haspopup="listbox" aria-expanded="false" role="button">
               <span id="photograph-filter-label"></span>
-              <i class="fa-solid fa-chevron-down fa-lg"></i>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"/>
+              </svg>
             </button>
             <ul class="filter-options" id="filter-options" role="listbox" aria-activedescendant="filter-popular" aria-labelledby="photograph-filter">
               <li role="option" id="filter-popular" aria-selected="true" data-value="popular"><span>Popularité</span></li>
@@ -39,13 +41,28 @@
         <section class="photograph-album-content"></section>
       </section>
     </main>
-    <div id="lightbox_modal">
-      <div class="lightbox_modal-picture-navigation">
-        <button type="button"></button>
-        <img src="#" alt="">
-        <button type="button"></button>
+    <div id="lightbox_modal" class="modal" aria-label="image closeup view">
+      <div class="modal-content">
+        <div class="lightbox_modal-picture-navigation">
+          <a class="picture-nav previous-picture" aria-label="Previous image" tabindex="-1">
+            <svg width="48" height="29" viewBox="0 1 16 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"/>
+            </svg>
+          </a>
+          <img src="#" alt="" width="1050" height="900">
+          <a class="picture-nav next-picture" aria-label="Next image" tabindex="-1">
+            <svg width="48" height="29" viewBox="0 1 16 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z"/>
+            </svg>
+          </a>
+        </div>
+        <p class="lightbox_modal-picture-title"></p>
+        <button type="button" class="lightbox_modal-close-btn" id="lightbox_modal-close-btn" aria-label="Close dialog" tabindex="-1">
+          <svg width="40" height="40" viewBox="0 0 42 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"/>
+          </svg>
+        </button>
       </div>
-      <p></p>
     </div>
     <div class="modal" id="contact_modal">
       <div class="modal-content">
