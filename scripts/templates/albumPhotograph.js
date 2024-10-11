@@ -1,9 +1,11 @@
 import { mediaTemplate } from "./media.js";
 import { createSvgElement, createTextElement } from "./elementDom.js";
+import UrlUtils from "../utils/urlUtils.js";
 
 export function albumPhotographTemplate(data) {
   const { id, photographerId, title, image, video, likes } = data;
-  const mediaSrc = `assets/albums/${photographerId}/${image || video}`;
+  const urlUtils = UrlUtils();
+  const mediaSrc = urlUtils.getMediaUrl(photographerId, image || video);
 
   function getAlbumItemDOM() {
     const articleDOM = document.createElement('article');
@@ -43,7 +45,7 @@ export function albumPhotographTemplate(data) {
 
     if (video) {
       let type = "video/" + video.split('.').pop();
-      mediaDOM = media.mediaVideoTemplate(mediaSrc, title, type);
+      mediaDOM = media.mediaVideoTemplate(mediaSrc, title, type, false);
     } else {
       mediaDOM = media.mediaImageTemplate(mediaSrc, title);
     }

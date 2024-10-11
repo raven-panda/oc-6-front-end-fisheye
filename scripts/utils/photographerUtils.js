@@ -40,7 +40,6 @@ export default function PhotographerUtils() {
     filterSelectContainer.addEventListener("click", selectFilterEvent);
     filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
 
-    lightboxModalUtils.createEvents();
     albumPhotographUtils.createEvents(photographersMedias);
   }
 
