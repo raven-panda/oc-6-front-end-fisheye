@@ -311,7 +311,7 @@ form#photograph-filter-form .photograph-filter-container select {
     align-items: center;
 }
 
-.lightbox_modal-picture-navigation img {
+.lightbox_modal-picture-navigation img, .lightbox_modal-picture-navigation video {
     display: block;
     width: calc(750px * calc(1050 / 900));
     height: 750px;
