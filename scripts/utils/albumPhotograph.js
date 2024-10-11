@@ -14,7 +14,28 @@ export default function AlbumPhotographUtils() {
     clickableAlbumItems.forEach(link => {
       link.addEventListener("click", selectAlbumtItemEvent);
       link.addEventListener("keydown", selectAlbumtItemEvent);
+
+      const video = link.querySelector("video");
+      if (video) {
+        video.addEventListener('mouseenter', () => {
+          video.play();
+        });
+        video.addEventListener('mouseleave', () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+
+        link.addEventListener('focus', () => {
+          console.log("a");
+          video.play();
+        });
+        link.addEventListener('blur', () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
     });
+    lightboxModalUtils.createEvents();
   }
 
   function selectAlbumtItemEvent(e) {       
@@ -29,9 +50,8 @@ export default function AlbumPhotographUtils() {
       return;
 
     urlUtils.setParam("mediaId", mediaId); // find a way to use this instead of dataset
-    const photographerId = urlUtils.getParam("photographerId");
 
-    lightboxModalUtils.displayData();
+    lightboxModalUtils.displayData(photographersMedias, media);
   }
 
   return { createEvents }
