@@ -10,11 +10,12 @@ export function mediaTemplate() {
       parent.appendChild(img);
     }
   
-    return { displayMedia };
+    return { img, displayMedia };
   }
   
-  function mediaVideoTemplate(src, alt, type, ...classList) {
+  function mediaVideoTemplate(src, alt, type, enableAutoplay, ...classList) {
     const video = document.createElement('video');
+    video.autoplay = enableAutoplay;
     /** @TODO : video must play on hover */
     if (classList && classList.length) video.classList.add(...classList);
 
@@ -34,7 +35,7 @@ export function mediaTemplate() {
       video.appendChild(downloadLink);
     }
 
-    return { displayMedia };
+    return { video, displayMedia };
   }
 
   return { mediaImageTemplate, mediaVideoTemplate }
