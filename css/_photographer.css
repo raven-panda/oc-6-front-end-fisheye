@@ -42,6 +42,7 @@ ul, li {
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 26px;
 }
 
 form#photograph-filter-form {
@@ -238,7 +239,7 @@ form#photograph-filter-form .photograph-filter-container select {
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    margin: 0 0 12px;
 }
 
 .modal form {
@@ -258,7 +259,6 @@ form#photograph-filter-form .photograph-filter-container select {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 .modal form input {
@@ -266,6 +266,13 @@ form#photograph-filter-form .photograph-filter-container select {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+.modal form textarea#contactMessage {
+    width: 100%;
+    height: 170px;
+    border: none;
+    border-radius: 5px;
+    resize: none;
 }
 
 #lightbox_modal .modal-content {
@@ -275,11 +282,10 @@ form#photograph-filter-form .photograph-filter-container select {
     justify-self: center;
 }
 
-#lightbox_modal button, #lightbox_modal a {
+#lightbox_modal button, #lightbox_modal a, #contact_modal button#closeContactModalButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--background-color-secondary);
     background: none;
     border: none;
     font-size: 30px;
@@ -288,15 +294,20 @@ form#photograph-filter-form .photograph-filter-container select {
     border-radius: 100%;
     transition: background-color 0.1s ease-in-out;
 }
-#lightbox_modal button {
+#lightbox_modal button, #lightbox_modal a {
+    color: var(--background-color-secondary);
+}
+#lightbox_modal button, #contact_modal button#closeContactModalButton {
     padding: 12px;
 }
 #lightbox_modal a {
     padding: 4px;
-
 }
-
-#lightbox_modal button:hover, #lightbox_modal a:hover {
+#contact_modal button#closeContactModalButton {
+    color: var(--background-color-primary);
+    margin-bottom: auto;
+}
+#lightbox_modal button:hover, #lightbox_modal a:hover, #contact_modal button#closeContactModalButton:hover {
     background-color: rgba(0, 0, 0, 0.2);
 } 
 

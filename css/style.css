@@ -22,6 +22,8 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+body > header {
     height: 90px;
     max-width: 1440px;
 }
