@@ -1,5 +1,5 @@
 import AlbumPhotographUtils from "./albumPhotograph.js";
-import LightboxModalUtils from "./lightboxModal.js";
+import ContactFormUtils from "./contactFormUtils.js";
 
 export default function PhotographerUtils() {
   const filterSelectContainer = document.querySelector(".photograph-filter-container");
@@ -8,7 +8,7 @@ export default function PhotographerUtils() {
   const filterOptionListContainer = filterSelectContainer.querySelector("#filter-options");
   const albumPhotograph = document.querySelector(".photograph-album-content");
   const albumPhotographUtils = AlbumPhotographUtils();
-  const lightboxModalUtils = LightboxModalUtils();
+  const contactModalUtils = ContactFormUtils();
 
   let isFilterActive = false;
 
@@ -41,6 +41,7 @@ export default function PhotographerUtils() {
     filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
 
     albumPhotographUtils.createEvents(photographersMedias);
+    contactModalUtils.createEvents();
   }
 
   function closeOnClickOutside(e) {        
