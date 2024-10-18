@@ -16,7 +16,7 @@
     <main id="main">
       <section class="photograph-header">
         <article class="photograph_description"></article>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" id="contactButton">Contactez-moi</button>
       </section>
       <section class="photograph-album">
         <form action="#" id="photograph-filter-form">
@@ -64,19 +64,34 @@
     <div class="modal" id="contact_modal">
       <div class="modal-content">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="X close button">
+          <h2>Contactez-moi <br><span id="contactPhotographerName"></span></h2>
+          <button type="button" id="closeContactModalButton">
+            <svg width="40" height="40" viewBox="0 0 42 42" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"/>
+            </svg>
+          </button>
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input>
+            <label for="firstname">Prénom</label>
+            <input type="text" id="firstname" name="firstname">
+          </div>
+          <div>
+            <label for="lastname">Nom</label>
+            <input type="text" id="lastname" name="lastname">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email">
+          </div>
+          <div>
+            <label for="contactMessage">Votre Message</label>
+            <textarea  id="contactMessage" name="contactMessage"></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
 		</div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
