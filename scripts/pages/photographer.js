@@ -13,6 +13,12 @@ async function photographerPage() {
 
   if (!photographerId) window.location = "./index.html";
 
+  function displayContactFormData(photographer) {
+    const photographerHeader = document.querySelector("#contact_modal");
+    const titlePhotographerName = photographerHeader.querySelector("#contactPhotographerName");
+    titlePhotographerName.textContent = photographer.name;
+  }
+
   function displayPhotographerHeaderData(photographer) {
     const photographerHeader = document.querySelector(".photograph-header");
     const photoDescriptionBox = photographerHeader.querySelector(".photograph_description");
@@ -39,6 +45,7 @@ async function photographerPage() {
   function displayData(photographer, photographersMedias) {
     displayPhotographerHeaderData(photographer);
     displayPhotographerAlbumData(photographersMedias);
+    displayContactFormData(photographer);
     photographerUtils.createEvents(photographersMedias);
   }
 
