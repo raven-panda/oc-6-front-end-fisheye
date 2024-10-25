@@ -56,10 +56,19 @@ async function photographerPage() {
     })
   }
 
+  const displayPhotographerDetailsData = (photographer, medias) => {
+    const photographersDetailLikesParagraph = document.querySelector(".photographer-details #photographer-details-likes");
+    photographersDetailLikesParagraph.textContent = medias.map(media => media.likes).reduce((acc, current) => acc + current, 0);
+
+    const photographersDetailPriceParagraph = document.querySelector(".photographer-details #photographer-details-price");
+    photographersDetailPriceParagraph.textContent = photographer.price;
+  }
+
   const displayData = (photographer, photographersMedias) => {
     displayPhotographerHeaderData(photographer);
     displayPhotographerAlbumData(photographersMedias);
     displayContactFormData(photographer);
+    displayPhotographerDetailsData(photographer, photographersMedias);
     photographerUtils.createEvents(photographersMedias);
   }
 
