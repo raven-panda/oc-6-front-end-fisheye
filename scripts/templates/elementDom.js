@@ -3,7 +3,7 @@ export function createTextElement(tag, textContent, ...classList) {
     element.textContent = textContent;
     if (classList && classList.length) element.classList.add(...classList);
 
-    function displayMedia(parent) {
+    const displayMedia = (parent) => {
       parent.appendChild(element);
     }
 
@@ -24,7 +24,7 @@ export function createSvgElement(width, height, viewbox, paths) {
     element.appendChild(path);
   })
 
-  function displayMedia(parent) {
+  const displayMedia = (parent) => {
     parent.appendChild(element);
   }
 

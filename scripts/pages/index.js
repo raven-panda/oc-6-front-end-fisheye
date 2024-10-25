@@ -4,7 +4,7 @@ import { photographerTemplate } from  "../templates/photographer.js";
 async function indexPage() {
   const photographerService = PhotographerService();
 
-  function displayData(photographers) {
+  const displayData = (photographers) => {
     const photographersSection = document.querySelector(".photographer_section");
   
     photographers.forEach((photographer) => {

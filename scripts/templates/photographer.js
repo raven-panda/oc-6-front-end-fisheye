@@ -26,7 +26,7 @@ export function photographerTemplate(data) {
         const locationTitle = createTextElement('h3', city + ", " + country, "photographer-card");
         const taglineParagraph = createTextElement('p', tagline, "photographer-card");
 
-        function displayData(fullNameParent, locationParent, taglineParent) {
+        const displayData = (fullNameParent, locationParent, taglineParent) => {
             fullNameTitle.displayMedia(fullNameParent);
             locationTitle.displayMedia(locationParent);
             taglineParagraph.displayMedia(taglineParent);
@@ -39,7 +39,7 @@ export function photographerTemplate(data) {
         const media = mediaTemplate();
         const img = media.mediaImageTemplate(picture, name, "photographer-card");
 
-        function displayData(parent) {
+        const displayData = (parent) => {
             img.displayMedia(parent);
         }
         
@@ -49,7 +49,7 @@ export function photographerTemplate(data) {
     function getUserCardPriceDOM() {
         const priceParagraph = createTextElement('p', price + "€/jour", "price", "photographer-card");
 
-        function displayData(parent) {
+        const displayData = (parent) => {
             priceParagraph.displayMedia(parent);
         }
 

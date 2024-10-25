@@ -13,13 +13,13 @@ async function photographerPage() {
 
   if (!photographerId) window.location = "./index.html";
 
-  function displayContactFormData(photographer) {
+  const displayContactFormData = (photographer) => {
     const photographerHeader = document.querySelector("#contact_modal");
     const titlePhotographerName = photographerHeader.querySelector("#contactPhotographerName");
     titlePhotographerName.textContent = photographer.name;
   }
 
-  function displayPhotographerHeaderData(photographer) {
+  const displayPhotographerHeaderData = (photographer) => {
     const photographerHeader = document.querySelector(".photograph-header");
     const photoDescriptionBox = photographerHeader.querySelector(".photograph_description");
     const photographerModel = photographerTemplate(photographer);
@@ -31,7 +31,7 @@ async function photographerPage() {
     photographerPicture.displayData(photographerHeader);
   }
 
-  function displayPhotographerAlbumData(photographersMedias) {
+  const displayPhotographerAlbumData = (photographersMedias) => {
     const albumPhotograph = document.querySelector(".photograph-album-content");
 
     photographersMedias.forEach(media => {
@@ -42,7 +42,7 @@ async function photographerPage() {
     })
   }
 
-  function displayData(photographer, photographersMedias) {
+  const displayData = (photographer, photographersMedias) => {
     displayPhotographerHeaderData(photographer);
     displayPhotographerAlbumData(photographersMedias);
     displayContactFormData(photographer);

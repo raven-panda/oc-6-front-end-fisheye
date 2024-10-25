@@ -6,7 +6,7 @@ export function mediaTemplate() {
     img.setAttribute("alt", alt);
     if (classList && classList.length) img.classList.add(...classList);
   
-    function displayMedia(parent) {
+    const displayMedia = (parent) => {
       parent.appendChild(img);
     }
   
@@ -28,7 +28,7 @@ export function mediaTemplate() {
     downloadLink.setAttribute("href", src);
     downloadLink.textContent = "un lien pour télécharger la vidéo";
 
-    function displayMedia(parent) {
+    const displayMedia = (parent) => {
       parent.appendChild(video);
       video.appendChild(source);
       video.append(errorMsg);

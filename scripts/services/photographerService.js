@@ -1,22 +1,4 @@
 export function PhotographerService() {
-  async function getPhotographersAndMedia() {
-    return await fetch("data/photographers.json", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.json();
-    })
-    .then((data) => {
-        return data;
-    })
-  }
-  
   async function getPhotographers() {
     const photographersAndMedias = await getPhotographersAndMedia();    
     return await photographersAndMedias.photographers;
@@ -33,7 +15,25 @@ export function PhotographerService() {
     return photographersAndMedias.media.filter(media => media.photographerId == id);
   }
 
-  async function getMediaById(mediaId) {
+  const getPhotographersAndMedia = async () => {
+    return await fetch("data/photographers.json", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+    })
+    .then((data) => {
+        return data;
+    })
+  }
+
+  const getMediaById = async (mediaId) => {
     const photographersAndMedias = await getPhotographersAndMedia();    
     return photographersAndMedias.media.find(media => media.id == mediaId);
   }

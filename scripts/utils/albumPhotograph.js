@@ -38,7 +38,7 @@ export default function AlbumPhotographUtils() {
     lightboxModalUtils.createEvents();
   }
 
-  function selectAlbumtItemEvent(e) {       
+  const selectAlbumtItemEvent = (e) => {       
     if (e.code && (e.code !== "Space" && e.code !== "Enter")) return;
       
     e.preventDefault();

@@ -12,6 +12,17 @@ export default function PhotographerUtils() {
 
   let isFilterActive = false;
 
+  function createEvents (photographersMedias) {
+    initializeValues();
+
+    document.addEventListener("click", closeOnClickOutside);
+    filterSelectContainer.addEventListener("click", selectFilterEvent);
+    filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
+
+    albumPhotographUtils.createEvents(photographersMedias);
+    contactModalUtils.createEvents();
+  }
+
   const filterLabels = {
     popular: {
       value: "popular",
@@ -27,28 +38,17 @@ export default function PhotographerUtils() {
     }
   }
 
-  function initializeValues() {
+  const initializeValues = () => {
     filterButtonLabel.textContent = filterLabels.popular.label;
     filterButton.value = filterLabels.popular.value;
     filterOptionListContainer.setAttribute("aria-activedescendant", "filter-" + filterLabels.popular.value);
   }
 
-  function createEvents(photographersMedias) {
-    initializeValues();
-
-    document.addEventListener("click", closeOnClickOutside);
-    filterSelectContainer.addEventListener("click", selectFilterEvent);
-    filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
-
-    albumPhotographUtils.createEvents(photographersMedias);
-    contactModalUtils.createEvents();
-  }
-
-  function closeOnClickOutside(e) {        
+  const closeOnClickOutside = (e) => {        
     if (isFilterActive && (e.target.parentNode != filterButton && e.target.parentNode != filterSelectContainer)) toggleFilters();
   }
 
-  function selectFilterEvent(e) {
+  const selectFilterEvent = (e) => {
     toggleFilters();
 
     if (isFilterActive) return;
@@ -66,14 +66,14 @@ export default function PhotographerUtils() {
     filterButton.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
   }
 
-  function toggleFilters() {
+  const toggleFilters = () => {
     isFilterActive = !isFilterActive;
     filterSelectContainer.classList.toggle("active");
     filterButton.ariaExpanded = isFilterActive;
     togglePageItemsTabIndex();
   }
 
-  function selectFilterKeydownEvent(e) {    
+  const selectFilterKeydownEvent = (e) => {    
     if (e.code === "Space" || e.code === "Enter") {
       e.preventDefault();
       toggleFilters();
@@ -102,7 +102,7 @@ export default function PhotographerUtils() {
     filterButton.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
   }
 
-  function togglePageItemsTabIndex() {
+  const togglePageItemsTabIndex = () => {
     const clickableAlbumItems = albumPhotograph.querySelectorAll(".photograph-album-item a");
     const likesButton = albumPhotograph.querySelectorAll(".photograph-album-item .photograph-album-item-description .photograph-album_like-button");
     const logo = document.querySelector(".logo");

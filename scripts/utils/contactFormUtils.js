@@ -5,21 +5,21 @@ export default function ContactFormUtils() {
     const closeContactModalButton = document.querySelector("#closeContactModalButton");
     const openContactModalButton = document.querySelector("#contactButton");
 
-    function displayModal() {
+    function createEvents() {
+        closeContactModalButton.addEventListener("click", closeModal);
+        openContactModalButton.addEventListener("click", displayModal);
+    }
+
+    const displayModal = () => {
         const modal = document.querySelector("#contact_modal");
         modalUtils.disablePageTabIndex();
         modal.classList.add('active');
     }
     
-    function closeModal() {
+    const closeModal = () => {
         const modal = document.querySelector("#contact_modal");
         modalUtils.enablePageTabIndex();
         modal.classList.remove('active');
-    }
-
-    function createEvents() {
-        closeContactModalButton.addEventListener("click", closeModal);
-        openContactModalButton.addEventListener("click", displayModal);
     }
 
     return { createEvents }
