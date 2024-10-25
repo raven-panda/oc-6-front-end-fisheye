@@ -33,7 +33,21 @@ async function photographerPage() {
 
   const displayPhotographerAlbumData = (photographersMedias) => {
     const albumPhotograph = document.querySelector(".photograph-album-content");
-
+    switch (params.get("sortFilter")) {
+      case "popular":
+        photographersMedias.sort((a, b) => b.likes - a.likes);
+        break;
+      case "date":
+        photographersMedias.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "title":
+        photographersMedias.sort((a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0);
+        break;
+      default:
+        photographersMedias.sort((a, b) => b.likes - a.likes);
+        break;
+    }
+    
     photographersMedias.forEach(media => {
       const albumPhotographModel = albumPhotographTemplate(media);
       const albumItemDOM = albumPhotographModel.getAlbumItemDOM();

@@ -1,3 +1,4 @@
+import { albumPhotographTemplate } from "../templates/albumPhotograph.js";
 import LightboxModalUtils from "./lightboxModal.js";
 import UrlUtils from "./urlUtils.js";
 
@@ -26,7 +27,6 @@ export default function AlbumPhotographUtils() {
         });
 
         link.addEventListener('focus', () => {
-          console.log("a");
           video.play();
         });
         link.addEventListener('blur', () => {
@@ -54,5 +54,34 @@ export default function AlbumPhotographUtils() {
     lightboxModalUtils.displayData(photographersMedias, media);
   }
 
-  return { createEvents }
+  function updateAlbum(filter) {
+    if (!photographersMedias) return;
+    
+    const albumPhotograph = document.querySelector(".photograph-album-content");
+    switch (filter) {
+      case "popular":
+        photographersMedias.sort((a, b) => b.likes - a.likes);
+        break;
+      case "date":
+        photographersMedias.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "title":
+        photographersMedias.sort((a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0);
+        break;
+      default:
+        photographersMedias.sort((a, b) => b.likes - a.likes);
+        break;
+    }
+
+    albumPhotograph.innerHTML = "";
+    photographersMedias.forEach(media => {
+      const albumPhotographModel = albumPhotographTemplate(media);
+      const albumItemDOM = albumPhotographModel.getAlbumItemDOM();
+
+      albumItemDOM.displayData(albumPhotograph);
+    })
+    createEvents(photographersMedias);
+  }
+
+  return { createEvents, updateAlbum }
 }

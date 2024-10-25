@@ -1,7 +1,9 @@
 import AlbumPhotographUtils from "./albumPhotograph.js";
 import ContactFormUtils from "./contactFormUtils.js";
+import UrlUtils from "./urlUtils.js";
 
 export default function PhotographerUtils() {
+  const urlUtils = UrlUtils();
   const filterSelectContainer = document.querySelector(".photograph-filter-container");
   const filterButton = document.querySelector("#photograph-filter");
   const filterButtonLabel = document.querySelector("#photograph-filter-label");
@@ -39,9 +41,9 @@ export default function PhotographerUtils() {
   }
 
   const initializeValues = () => {
-    filterButtonLabel.textContent = filterLabels.popular.label;
-    filterButton.value = filterLabels.popular.value;
-    filterOptionListContainer.setAttribute("aria-activedescendant", "filter-" + filterLabels.popular.value);
+    const filterUrlParamValue = urlUtils.getParam("sortFilter");
+    const currentValue = filterLabels[filterUrlParamValue] || filterLabels.popular;
+    selectFilter(currentValue.value);
   }
 
   const closeOnClickOutside = (e) => {        
@@ -54,7 +56,12 @@ export default function PhotographerUtils() {
     if (isFilterActive) return;
 
     const value = e.target?.tagName === "SPAN" ? e.target.parentNode?.dataset?.value : e.target?.dataset?.value;
-    if (!value) return;
+    selectFilter(value);
+  }
+
+  const selectFilter = (value) => {
+    const currentValue = filterLabels[value];
+    if (!currentValue) return;
 
     filterButton.value = filterLabels[value].value;
 
@@ -64,6 +71,8 @@ export default function PhotographerUtils() {
     filterButtonLabel.textContent = filterLabels[value].label;
     
     filterButton.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
+    urlUtils.setParam("sortFilter", filterLabels[value].value)
+    albumPhotographUtils.updateAlbum(filterLabels[value].value);
   }
 
   const toggleFilters = () => {
