@@ -36,7 +36,7 @@ ul, li {
     font-weight: bold;
     color: white;
     padding: 11px;
-    width: 170px;
+    min-width: 170px;
     height: 70px;
     border: none;
     background-color: #901C1C;
@@ -177,6 +177,9 @@ form#photograph-filter-form .photograph-filter-container select {
 
 .photograph-album-item .photograph-album-item-description h2 {
     margin: 0 auto 0 0;
+    color: var(--title-color-secondary);
+    font-weight: 400;
+    font-size: 1.5rem;
 }
 
 .photograph-album-item .photograph-album-item-description p {
