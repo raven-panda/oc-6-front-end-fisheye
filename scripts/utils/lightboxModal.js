@@ -42,22 +42,13 @@ export default function LightboxModalUtils() {
     closeModalButton.addEventListener("click", closeModal);
     mediaNavPreviousButton.addEventListener("click", () => previousItem());
     mediaNavNextButton.addEventListener("click", () =>  nextItem());
-    mediaNavPreviousButton.addEventListener("keydown", (e) => {
-      if (e.code !== "Space" && e.code !== "Enter") return;
-      previousItem();
-    });
-    mediaNavNextButton.addEventListener("keydown", (e) => {     
-      console.log(e.code);
-       
-      if (e.code !== "Space" && e.code !== "Enter") return;
-      nextItem();
-    });
+
     document.addEventListener("keydown", (e) => {
-      if (!lightboxModal.classList.contains("active") || e.key !== "ArrowRight") return;
+      if (!lightboxModal.classList.contains("active") || e.key !== "ArrowLeft") return;
       previousItem();
     });
     document.addEventListener("keydown",  (e) => {
-      if (!lightboxModal.classList.contains("active") || e.key !== "ArrowLeft") return;
+      if (!lightboxModal.classList.contains("active") || e.key !== "ArrowRight") return;
       nextItem();
     });
     document.addEventListener("keydown",  (e) => {

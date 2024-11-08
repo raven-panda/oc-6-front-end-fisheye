@@ -5,6 +5,8 @@ import UrlUtils from "./urlUtils.js";
 export default function PhotographerUtils() {
   const urlUtils = UrlUtils();
   const filterSelectContainer = document.querySelector(".photograph-filter-container");
+  const filterSelectList = document.querySelector(".photograph-filter-container ul");
+  const filterOptions = filterSelectList.querySelectorAll(".filter-options > li");
   const filterButton = document.querySelector("#photograph-filter");
   const filterButtonLabel = document.querySelector("#photograph-filter-label");
   const filterOptionListContainer = filterSelectContainer.querySelector("#filter-options");
@@ -19,7 +21,7 @@ export default function PhotographerUtils() {
 
     document.addEventListener("click", closeOnClickOutside);
     filterSelectContainer.addEventListener("click", selectFilterEvent);
-    filterSelectContainer.addEventListener("keydown", selectFilterKeydownEvent);
+    filterSelectList.addEventListener("keydown", selectFilterKeydownEvent);
 
     albumPhotographUtils.createEvents(photographersMedias);
     contactModalUtils.createEvents();
@@ -79,6 +81,20 @@ export default function PhotographerUtils() {
     isFilterActive = !isFilterActive;
     filterSelectContainer.classList.toggle("active");
     filterButton.ariaExpanded = isFilterActive;
+    
+    if (isFilterActive) {
+      filterOptions.forEach(option => {
+        option.setAttribute("tabindex", option.ariaSelected === "true" ? "1" : "2");
+        option.classList.add("selected");
+        if (option.ariaSelected === "true") option.focus();
+      });
+    } else {
+      filterSelectList.setAttribute("tabindex", "0");
+      filterOptions.forEach(option => {
+        option.setAttribute("tabindex", "-1");
+      }); 
+    };
+
     togglePageItemsTabIndex();
   }
 
@@ -95,20 +111,20 @@ export default function PhotographerUtils() {
 
     filterButton.value = filterLabels[value].value;
 
-    const filterOptions = filterSelectContainer.querySelectorAll(".filter-options > li");
     filterOptions.forEach(option => {
       if (option.dataset.value === filterButton.value) {
         option.ariaSelected = true;
-        option.removeAttribute("tabindex");
       } else {
         option.ariaSelected = false;
-        option.setAttribute("tabindex", "0");
       }
-    });      
+    });
 
     filterButtonLabel.textContent = filterLabels[value].label;
     
     filterButton.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
+    urlUtils.setParam("sortFilter", filterLabels[value].value)
+    albumPhotographUtils.updateAlbum(filterLabels[value].value);
+    filterSelectList.focus();
   }
 
   const togglePageItemsTabIndex = () => {
@@ -118,7 +134,7 @@ export default function PhotographerUtils() {
     const contactButton = document.querySelector(".contact_button");
     const elements = [...clickableAlbumItems, ...likesButton, logo, contactButton];
 
-    elements.forEach(link => link.setAttribute("tabindex", isFilterActive ? "-1&" : "0"))
+    elements.forEach(link => link.setAttribute("tabindex", isFilterActive ? "-1" : "0"))
   }
 
   return { createEvents }
