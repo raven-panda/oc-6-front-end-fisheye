@@ -2,7 +2,7 @@ import { mediaTemplate } from "./media.js";
 import { createTextElement } from "./elementDom.js";
 export function photographerTemplate(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `./assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
