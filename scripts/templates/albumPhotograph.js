@@ -49,7 +49,7 @@ export function albumPhotographTemplate(data) {
       let type = "video/" + video.split('.').pop();
       mediaDOM = media.mediaVideoTemplate(mediaSrc, title, type, false);
     } else {
-      mediaDOM = media.mediaImageTemplate(mediaSrc, title);
+      mediaDOM = media.mediaImageTemplate(mediaSrc, title, 350, 300);
     }
 
     const displayData = (parent) => {

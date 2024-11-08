@@ -1,9 +1,11 @@
 export function mediaTemplate() {
 
-  function mediaImageTemplate(src, alt, ...classList) {
+  function mediaImageTemplate(src, alt, width, height, ...classList) {
     const img = document.createElement('img');
     img.setAttribute("src", src)
     img.setAttribute("alt", alt);
+    img.setAttribute("width", width)
+    img.setAttribute("height", height);
     if (classList && classList.length) img.classList.add(...classList);
   
     const displayMedia = (parent) => {

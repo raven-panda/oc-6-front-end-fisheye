@@ -59,7 +59,7 @@ export default function LightboxModalUtils() {
   
   const displayImage = (src, alt) => {
     if (mediaContainer.childElementCount > 0) mediaContainer.removeChild(mediaContainer.lastChild);
-    const imgElement = mediaTemp.mediaImageTemplate(src, alt)
+    const imgElement = mediaTemp.mediaImageTemplate(src, alt, 875, 750);
     imgElement.displayMedia(mediaContainer);
   }
   

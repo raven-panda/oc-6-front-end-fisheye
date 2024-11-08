@@ -37,7 +37,7 @@ export function photographerTemplate(data) {
 
     function getUserCardPictureDOM() {
         const media = mediaTemplate();
-        const img = media.mediaImageTemplate(picture, name, "photographer-card");
+        const img = media.mediaImageTemplate(picture, name, 200, 200, "photographer-card");
 
         const displayData = (parent) => {
             img.displayMedia(parent);
