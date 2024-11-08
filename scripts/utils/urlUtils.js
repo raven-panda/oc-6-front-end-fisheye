@@ -17,7 +17,7 @@ export default function UrlUtils() {
   }
 
   function getMediaUrl(photographerId, fileName) {
-    return `assets/albums/${photographerId}/${fileName}`;
+    return `./assets/albums/${photographerId}/${fileName}`;
   }
 
   return { getParam, setParam, removeParam, getMediaUrl }
