@@ -1,21 +1,36 @@
+/**
+ * Creates a text element by providing a element tagname, text content and optional classes
+ * @param tag Tag of the HTML element
+ * @param textContent Content of the HTML text element
+ * @param classList Classes of the HTML element
+ * @returns DOM element and displayMedia to render the element
+ */
 export function createTextElement(tag, textContent, ...classList) {
-    const element = document.createElement(tag);
-    element.textContent = textContent;
-    if (classList && classList.length) element.classList.add(...classList);
+  const element = document.createElement(tag);
+  element.textContent = textContent;
+  if (classList && classList.length) element.classList.add(...classList);
 
-    const displayMedia = (parent) => {
-      parent.appendChild(element);
-    }
+  const displayMedia = (parent) => {
+    parent.appendChild(element);
+  }
 
-    return { element, displayMedia };
+  return { element, displayMedia };
 }
 
+/**
+ * Creates a SVG element by providing a width, height, viewbox and paths
+ * @param width Width of the SVG
+ * @param height Height of the SVG
+ * @param viewbox Viewbox of the SVG
+ * @param paths Paths to render in the SVG
+ * @returns DOM svg element and displayMedia to render the element
+ */
 export function createSvgElement(width, height, viewbox, paths) {
   const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   element.setAttribute('fill', "currentColor");
-  element.setAttribute('width', "19");
-  element.setAttribute('height', "19");
-  element.setAttribute('viewBox', "0 0 19 19");
+  element.setAttribute('width', width);
+  element.setAttribute('height', height);
+  element.setAttribute('viewBox', viewbox);
 
   paths.forEach(pathString => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");

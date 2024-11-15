@@ -16,6 +16,10 @@ export default function PhotographerUtils() {
 
   let isFilterActive = false;
 
+  /**
+   * Create event listeners in photographer page DOM
+   * @param photographersMedias The photographer's medias 
+   */
   function createEvents (photographersMedias) {
     initializeValues();
 
@@ -42,6 +46,9 @@ export default function PhotographerUtils() {
     }
   }
 
+  /**
+   * Initialise value of the **filter** input
+   */
   const initializeValues = () => {
     const filterUrlParamValue = urlUtils.getParam("sortFilter");
     const currentValue = filterLabels[filterUrlParamValue] || filterLabels.popular;
@@ -52,6 +59,9 @@ export default function PhotographerUtils() {
     if (isFilterActive && (e.target.parentNode != filterButton && e.target.parentNode != filterSelectContainer)) toggleFilters();
   }
 
+  /**
+   * Event callback for **filter** input, click event only
+   */
   const selectFilterEvent = (e) => {
     toggleFilters();
 
@@ -61,6 +71,9 @@ export default function PhotographerUtils() {
     selectFilter(value);
   }
 
+  /**
+   * Displays data in **filter** input and updates "sortFilter" query param
+   */
   const selectFilter = (value) => {
     const currentValue = filterLabels[value];
     if (!currentValue) return;
@@ -77,6 +90,9 @@ export default function PhotographerUtils() {
     albumPhotographUtils.updateAlbum(filterLabels[value].value);
   }
 
+  /**
+   * Toggles **filter** input elements to show or hide and updates tabulation navigation
+   */
   const toggleFilters = () => {
     isFilterActive = !isFilterActive;
     filterSelectContainer.classList.toggle("active");
@@ -98,6 +114,9 @@ export default function PhotographerUtils() {
     togglePageItemsTabIndex();
   }
 
+  /**
+   * Event callback for **filter** input, key pressed event only
+   */
   const selectFilterKeydownEvent = (e) => {    
     if (e.code === "Space" || e.code === "Enter") {
       e.preventDefault();
@@ -127,6 +146,9 @@ export default function PhotographerUtils() {
     filterSelectList.focus();
   }
 
+  /**
+   * Toggles all elements tabindex for tabulation navigation in photographer page (except modals)
+   */
   const togglePageItemsTabIndex = () => {
     const clickableAlbumItems = albumPhotograph.querySelectorAll(".photograph-album-item a");
     const likesButton = albumPhotograph.querySelectorAll(".photograph-album-item .photograph-album-item-description .photograph-album_like-button");

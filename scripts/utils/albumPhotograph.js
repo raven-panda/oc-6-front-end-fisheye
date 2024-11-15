@@ -8,6 +8,10 @@ export default function AlbumPhotographUtils() {
   const urlUtils = UrlUtils();
   let photographersMedias;
 
+  /**
+   * Create event listeners on photographer album
+   * @param {*} _photographersMedias Medias data of a photographer
+   */
   function createEvents(_photographersMedias) {
     photographersMedias = _photographersMedias;
     
@@ -38,6 +42,11 @@ export default function AlbumPhotographUtils() {
     lightboxModalUtils.createEvents();
   }
 
+  /**
+   * Event callback on click or key press on album item
+   * @param e Keyboard Event
+   * @returns 
+   */
   const selectAlbumtItemEvent = (e) => {       
     if (e.code && (e.code !== "Space" && e.code !== "Enter")) return;
       
@@ -54,6 +63,10 @@ export default function AlbumPhotographUtils() {
     lightboxModalUtils.displayData(photographersMedias, media);
   }
 
+  /**
+   * Regenerates album item DOM and reorganize the medias using the selected filter
+   * @param {"popular"|"date"|"title"} filter Filter to use for organizing album items
+   */
   function updateAlbum(filter) {
     if (!photographersMedias) return;
     
@@ -75,8 +88,7 @@ export default function AlbumPhotographUtils() {
 
     albumPhotograph.innerHTML = "";
     photographersMedias.forEach(media => {
-      const albumPhotographModel = albumPhotographTemplate(media);
-      const albumItemDOM = albumPhotographModel.getAlbumItemDOM();
+      const albumItemDOM = albumPhotographTemplate(media);
 
       albumItemDOM.displayData(albumPhotograph);
     })

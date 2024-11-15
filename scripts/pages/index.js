@@ -1,6 +1,9 @@
 import { PhotographerService } from "../services/photographerService.js";
 import { photographerTemplate } from  "../templates/photographer.js";
 
+/**
+ * Index page main function
+ */
 async function indexPage() {
   const photographerService = PhotographerService();
 

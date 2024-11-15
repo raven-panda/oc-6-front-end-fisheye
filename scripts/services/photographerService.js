@@ -1,3 +1,6 @@
+/**
+ * Photographer service used to fetch photographers data and medias
+ */
 export function PhotographerService() {
   async function getPhotographers() {
     const photographersAndMedias = await getPhotographersAndMedia();    
@@ -32,11 +35,6 @@ export function PhotographerService() {
         return data;
     })
   }
-
-  const getMediaById = async (mediaId) => {
-    const photographersAndMedias = await getPhotographersAndMedia();    
-    return photographersAndMedias.media.find(media => media.id == mediaId);
-  }
-
+  
   return { getPhotographers, getPhotographerById, getPhotographersMedias };
 }

@@ -2,6 +2,11 @@ import { mediaTemplate } from "./media.js";
 import { createSvgElement, createTextElement } from "./elementDom.js";
 import UrlUtils from "../utils/urlUtils.js";
 
+/**
+ * Album photograph template function
+ * @param {*} data The media to create
+ * @returns The DOM element and the displayData function to render the element
+ */
 export function albumPhotographTemplate(data) {
   const { id, photographerId, title, image, video, likes } = data;
   const urlUtils = UrlUtils();
@@ -59,5 +64,5 @@ export function albumPhotographTemplate(data) {
     return { displayData }
   }
   
-  return { getAlbumItemDOM}
+  return getAlbumItemDOM();
 }

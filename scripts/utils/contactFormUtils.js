@@ -6,11 +6,17 @@ export default function ContactFormUtils() {
     const openContactModalButton = document.querySelector("#contactButton");
     const bodyContainer = document.querySelector("body");
 
+    /**
+     * Creates event listeners for contact modal
+     */
     function createEvents() {
         closeContactModalButton.addEventListener("click", closeModal);
         openContactModalButton.addEventListener("click", displayModal);
     }
 
+    /**
+     * Callback of clicking on open contact modal button event
+     */
     const displayModal = () => {
         const modal = document.querySelector("#contact_modal");
         modalUtils.disablePageTabIndex();
@@ -18,6 +24,9 @@ export default function ContactFormUtils() {
         bodyContainer.classList.add("modal-open");
     }
     
+    /**
+     * Callback of clicking on close contact modal button event
+     */
     const closeModal = () => {
         const modal = document.querySelector("#contact_modal");
         modalUtils.enablePageTabIndex();

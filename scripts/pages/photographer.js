@@ -5,6 +5,9 @@ import { albumPhotographTemplate } from "../templates/albumPhotograph.js";
 import { photographerTemplate } from "../templates/photographer.js";
 import PhotographerUtils from "../utils/photographerUtils.js";
 
+/**
+ * Photographer page main function
+ */
 async function photographerPage() {
   const params = new URLSearchParams(document.location.search);
   const photographerService = PhotographerService();
@@ -13,12 +16,19 @@ async function photographerPage() {
 
   if (!photographerId) window.location = "./index.html";
 
+  /**
+   * Displays photographer data in contact form
+   * @param photographer The photographer data 
+   */
   const displayContactFormData = (photographer) => {
-    const photographerHeader = document.querySelector("#contact_modal");
-    const titlePhotographerName = photographerHeader.querySelector("#contactPhotographerName");
+    const titlePhotographerName = document.querySelector("#contact_modal #contactPhotographerName");
     titlePhotographerName.textContent = photographer.name;
   }
 
+  /**
+   * Displays photographer datas and picture in photographer page header
+   * @param photographer The photographer data 
+   */
   const displayPhotographerHeaderData = (photographer) => {
     const photographerHeader = document.querySelector(".photograph-header");
     const photoDescriptionBox = photographerHeader.querySelector(".photograph_description");
@@ -31,6 +41,10 @@ async function photographerPage() {
     photographerPicture.displayData(photographerHeader);
   }
 
+  /**
+   * Displays photographer's pictures and videos in the album
+   * @param photographer The photographer's medias 
+   */
   const displayPhotographerAlbumData = (photographersMedias) => {
     const albumPhotograph = document.querySelector(".photograph-album-content");
     switch (params.get("sortFilter")) {
@@ -49,13 +63,16 @@ async function photographerPage() {
     }
     
     photographersMedias.forEach(media => {
-      const albumPhotographModel = albumPhotographTemplate(media);
-      const albumItemDOM = albumPhotographModel.getAlbumItemDOM();
+      const albumItemDOM = albumPhotographTemplate(media);
 
       albumItemDOM.displayData(albumPhotograph);
     })
   }
-
+  
+  /**
+   * Displays photographer's pictures and videos in the album
+   * @param photographer The photographer's medias 
+   */
   const displayPhotographerDetailsData = (photographer, medias) => {
     const photographersDetailLikesParagraph = document.querySelector(".photographer-details #photographer-details-likes");
     photographersDetailLikesParagraph.textContent = medias.map(media => media.likes).reduce((acc, current) => acc + current, 0);
