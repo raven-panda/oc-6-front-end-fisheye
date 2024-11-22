@@ -32,7 +32,7 @@ ul, li {
 }
 
 .contact_button {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: bold;
     color: white;
     padding: 11px;
@@ -284,7 +284,7 @@ form#photograph-filter-form .photograph-filter-container select {
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: normal;
     margin: 0 0 12px;
 }
@@ -298,7 +298,7 @@ form#photograph-filter-form .photograph-filter-container select {
 
 .modal form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 2.25rem;
 }
 
 .modal form div {
@@ -333,7 +333,7 @@ form#photograph-filter-form .photograph-filter-container select {
     align-items: center;
     background: none;
     border: none;
-    font-size: 30px;
+    font-size: 1.875rem;
     cursor: pointer;
     aspect-ratio: 1;
     border-radius: 100%;
