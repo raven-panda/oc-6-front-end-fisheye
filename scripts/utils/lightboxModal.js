@@ -50,9 +50,12 @@ export default function LightboxModalUtils() {
    * Creates events for lightbox modal
    */
   function createEvents() {
+    closeModalButton.removeEventListener("click", closeModal);
+    mediaNavPreviousButton.removeEventListener("click", previousItem);
+    mediaNavNextButton.removeEventListener("click", nextItem);
     closeModalButton.addEventListener("click", closeModal);
-    mediaNavPreviousButton.addEventListener("click", () => previousItem());
-    mediaNavNextButton.addEventListener("click", () =>  nextItem());
+    mediaNavPreviousButton.addEventListener("click", previousItem);
+    mediaNavNextButton.addEventListener("click", nextItem);
 
     document.addEventListener("keydown", (e) => {
       if (!lightboxModal.classList.contains("active") || e.key !== "ArrowLeft") return;
@@ -93,6 +96,7 @@ export default function LightboxModalUtils() {
   const nextItem = () => {
     const index = medias.indexOf(currentMedia);
     const selected = index >= 0 && index < medias.length - 1 ? medias[index + 1] : medias[0];
+    
     displayData(medias, selected);
   }
 
@@ -103,6 +107,7 @@ export default function LightboxModalUtils() {
   const previousItem = () => {
     const index = medias.indexOf(currentMedia);
     const selected = index > 0 && index <= medias.length - 1 ? medias[index - 1] : medias[medias.length - 1];
+
     displayData(medias, selected);
   }
 

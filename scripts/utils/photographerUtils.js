@@ -100,12 +100,13 @@ export default function PhotographerUtils() {
     
     if (isFilterActive) {
       filterOptions.forEach(option => {
-        option.setAttribute("tabindex", option.ariaSelected === "true" ? "1" : "2");
+        option.setAttribute("tabindex", option.ariaSelected === "true" ? "-1" : "2");
         option.classList.add("selected");
-        if (option.ariaSelected === "true") option.focus();
       });
+      filterButton.setAttribute("tabindex", "1");
+      filterButton.focus();
     } else {
-      filterSelectList.setAttribute("tabindex", "0");
+      filterButton.setAttribute("tabindex", "0");
       filterOptions.forEach(option => {
         option.setAttribute("tabindex", "-1");
       }); 

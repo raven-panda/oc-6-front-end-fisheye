@@ -10,17 +10,21 @@ export default function AlbumPhotographUtils() {
 
   /**
    * Create event listeners on photographer album
-   * @param {*} _photographersMedias Medias data of a photographer
+   * @param _photographersMedias Medias data of a photographer
    */
   function createEvents(_photographersMedias) {
     photographersMedias = _photographersMedias;
     
-    const clickableAlbumItems = albumPhotograph.querySelectorAll(".photograph-album-item a");
-    clickableAlbumItems.forEach(link => {
+    const albumItemsDOM = albumPhotograph.querySelectorAll(".photograph-album-item");
+
+    albumItemsDOM.forEach(mediaDOM => {
+      // Media link event binding for lightbox modal openning
+      const link = mediaDOM.querySelector('a');
       link.addEventListener("click", selectAlbumtItemEvent);
       link.addEventListener("keydown", selectAlbumtItemEvent);
 
-      const video = link.querySelector("video");
+      // Video event binding on hover or focus
+      const video = mediaDOM.querySelector("video");
       if (video) {
         video.addEventListener('mouseenter', () => {
           video.play();
@@ -38,7 +42,11 @@ export default function AlbumPhotographUtils() {
           video.currentTime = 0;
         });
       }
-    });
+
+      const likeButtonDOM = mediaDOM.querySelector(".photograph-album-item .photograph-album_like-button");
+      likeButtonDOM.addEventListener("click", incrementLikeEvent);
+    })
+
     lightboxModalUtils.createEvents();
   }
 
@@ -61,6 +69,22 @@ export default function AlbumPhotographUtils() {
     urlUtils.setParam("mediaId", mediaId); // find a way to use this instead of dataset
 
     lightboxModalUtils.displayData(photographersMedias, media);
+  }
+
+  const incrementLikeEvent = (e) => {    
+    const mediaDOM = e.currentTarget.parentNode.parentNode;
+    // Incrementing like of the media
+    const numberOfLikes = mediaDOM.querySelector(".photograph-album_number-likes");
+    if (numberOfLikes)
+      numberOfLikes.textContent = parseInt(numberOfLikes.textContent) + (mediaDOM.dataset.liked === "false" ? 1 : -1);
+    
+    // Incrementing total likes number
+    const totalLikes = document.querySelector(".photographer-details #photographer-details-likes");
+    if (totalLikes)
+      totalLikes.textContent = parseInt(totalLikes.textContent) + (mediaDOM.dataset.liked === "false" ? 1 : -1);
+
+    // Setting the data-liked to true if it was false, or false if it was true
+    mediaDOM.dataset.liked = !(mediaDOM.dataset.liked === "true");
   }
 
   /**

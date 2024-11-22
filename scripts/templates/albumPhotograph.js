@@ -16,6 +16,7 @@ export function albumPhotographTemplate(data) {
     const articleDOM = document.createElement('article');
     articleDOM.classList.add("photograph-album-item");
     articleDOM.dataset.mediaId = id;
+    articleDOM.dataset.liked = false;
     const mediaLinkDOM = document.createElement('a');
     mediaLinkDOM.href = `#`;
     mediaLinkDOM.ariaLabel = title;
@@ -25,7 +26,7 @@ export function albumPhotographTemplate(data) {
     descriptionDOM.classList.add("photograph-album-item-description");
     
     const itemNameDOM = createTextElement('h2', title);
-    const itemLikesDOM = createTextElement('p', likes);
+    const itemLikesDOM = createTextElement('p', likes, "photograph-album_number-likes");
     const buttonDOM = document.createElement('button');
     buttonDOM.classList.add("photograph-album_like-button");
     buttonDOM.setAttribute("aria-label", "J'aime");

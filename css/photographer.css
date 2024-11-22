@@ -65,7 +65,6 @@ form#photograph-filter-form .photograph-filter-container {
 
 form#photograph-filter-form .photograph-filter-container .filter-options, button#photograph-filter {
     display: flex;
-    cursor: pointer;
     background: var(--background-color-secondary);
     color: var(--text-color-tertiary);
     min-width: 170px;
@@ -81,6 +80,7 @@ form#photograph-filter-form .photograph-filter-container .filter-options {
     overflow: hidden;
     z-index: -1;
     opacity: 0;
+    height: 64px;
 }
 
 button#photograph-filter {
@@ -122,13 +122,18 @@ button#photograph-filter[aria-expanded="false"] + svg#filter-dropdown-icon {
     outline: none;
 }
 
-form#photograph-filter-form .photograph-filter-container .filter-options > li:focus,
-form#photograph-filter-form .photograph-filter-container .filter-options:focus ~ button#photograph-filter,
 form#photograph-filter-form .photograph-filter-container .filter-options > li:hover,
-form#photograph-filter-form .photograph-filter-container .filter-options:hover ~ button#photograph-filter,
-button.contact_button:hover, button.contact_button:focus {
-    outline: none;
-    background: var(--background-color-secondary-focus);
+form#photograph-filter-form .photograph-filter-container .filter-options > li:focus,
+button:hover,
+button#photograph-filter:hover,
+button#photograph-filter:focus,
+button#photograph-filter:hover + svg#filter-dropdown-icon {
+    background: var(--background-color-tertiary);
+    color: var(--text-color-primary);
+}
+
+button.photograph-album_like-button:hover {
+    color: var(--background-color-tertiary);
 }
 
 form#photograph-filter-form .photograph-filter-container .filter-options > li[aria-selected="true"] {
@@ -151,9 +156,8 @@ form#photograph-filter-form .photograph-filter-container .filter-options > li[ar
 form#photograph-filter-form .photograph-filter-container.active .filter-options {
     z-index: 3;
     opacity: 1;
-}
-form#photograph-filter-form .photograph-filter-container.active button#photograph-filter {
-    opacity: 0;
+    cursor: pointer;
+    height: auto;
 }
 
 form#photograph-filter-form .photograph-filter-container select {
@@ -230,7 +234,7 @@ form#photograph-filter-form .photograph-filter-container select {
 }
 
 .photographer-details p {
-    margin: 0;
+    margin: 0 6px 0 0;
 }
 
 /** Modal style **/
@@ -271,7 +275,7 @@ form#photograph-filter-form .photograph-filter-container select {
     width: 100%;
 }
 
-.modal header img {
+.modal header img, button#photograph-filter {
     cursor: pointer;
 }
 

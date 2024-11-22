@@ -26,12 +26,12 @@
         <form action="#" id="photograph-filter-form">
           <label for="photograph-filter">Trier par</label>
           <div class="photograph-filter-container">
-            <ul class="filter-options" id="filter-options" role="listbox" aria-flowto="filter-date filter-title filter-popular" aria-activedescendant="filter-popular" aria-labelledby="photograph-filter" tabindex="0">
+            <ul class="filter-options" id="filter-options" role="listbox" aria-flowto="filter-date filter-title filter-popular" aria-activedescendant="filter-popular" aria-labelledby="photograph-filter" tabindex="-1">
               <li role="option" id="filter-popular" aria-selected="true" tabindex="-1" data-value="popular"><span>Popularité</span></li>
               <li role="option" id="filter-date" aria-selected="false" tabindex="-1" data-value="date"><span>Date</span></li>
               <li role="option" id="filter-title" aria-selected="false" tabindex="-1" data-value="title"><span>Titre</span></li>
             </ul>
-            <button id="photograph-filter" name="photographFilter" tabindex="-1" type="button" aria-haspopup="listbox" aria-expanded="false" role="button">
+            <button id="photograph-filter" name="photographFilter" tabindex="0" type="button" aria-haspopup="listbox" aria-expanded="false" role="button">
               <span id="photograph-filter-label"></span>
             </button>
             <svg id="filter-dropdown-icon" width="16" height="11" viewBox="0 0 16 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
