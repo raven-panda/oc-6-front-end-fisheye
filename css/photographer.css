@@ -242,13 +242,17 @@ form#photograph-filter-form .photograph-filter-container select {
 .modal {
     display: none;
     position: fixed;
-    background-color: var(--background-color-primary);
+    background-color: var(--background-color-modal-oppened);
     top: 0;
     z-index: 99;
     width: 100%;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
+}
+
+#lightbox_modal {
+    background-color: var(--background-color-primary);
 }
 
 .modal.active {
@@ -321,8 +325,6 @@ form#photograph-filter-form .photograph-filter-container select {
 #lightbox_modal .modal-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-self: center;
 }
 
 #lightbox_modal button, #lightbox_modal a, #contact_modal button#closeContactModalButton {
@@ -382,5 +384,7 @@ form#photograph-filter-form .photograph-filter-container select {
 }
 
 .lightbox_modal-picture-title {
-    margin: 0;
+    margin: 12px 96px;
+    font-size: 1.5rem;
+    font-weight: 400;
 }

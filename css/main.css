@@ -2,12 +2,12 @@
     --background-color-primary: #FFFFFF;
     --background-color-secondary: #901C1C;
     --background-color-tertiary: #DB8876;
+    --background-color-modal-oppened: #C4C4C466;
     --title-color-primary: #D3573C;
     --title-color-secondary: #901C1C;
     --text-color-primary: #000000;
     --text-color-secondary: #757575;
     --text-color-tertiary: #FFFFFF;
-    --modal-oppened-background-color: #C4C4C466;
 }
 
 body {
@@ -65,9 +65,12 @@ h2.photographer-card {
     font-size: 2.25rem;
     margin-top: 20px;
 }
+
+h3.photographer-card, h1.lightbox_modal-picture-title {
+    color: var(--title-color-secondary);
+}
   
 h3.photographer-card {
-    color: var(--title-color-secondary);
     font-size: 0.8125rem;
 }
   

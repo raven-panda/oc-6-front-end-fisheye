@@ -34,6 +34,7 @@ export default function LightboxModalUtils() {
     } else {
       displayImage(urlUtils.getMediaUrl(photographerId, currentMedia.image), currentMedia.title);
     }
+    displayTitle(selected.title);
   }
 
   /**
@@ -69,6 +70,14 @@ export default function LightboxModalUtils() {
       if (!lightboxModal.classList.contains("active") || e.key !== "Escape") return;
       closeModal();
     });
+  }
+
+  /**
+   * Display the media title
+   */
+  const displayTitle = (title) => {
+    const titleElementDOM = document.querySelector(".lightbox_modal-picture-title");
+    titleElementDOM.textContent = title;
   }
   
   /**
