@@ -1,10 +1,18 @@
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.photograph-album {
+    margin-top: 9px;
+}
+
 ul, li {
     all: unset;
 }
 
 .photograph-header {
     background-color: #FAFAFA;
-    margin: 0 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,10 +33,6 @@ ul, li {
     font-size: 1.125rem;
     margin: 0;
     margin-top: 16px;
-}
-
-.photograph-album {
-    margin: 9px 100px 0;
 }
 
 .contact_button {

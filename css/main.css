@@ -15,14 +15,7 @@ body {
     margin: 0;
 }
 
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
 body > header {
-    height: 90px;
     max-width: 1440px;
 }
 
@@ -31,18 +24,21 @@ header, main {
     margin: auto;
 }
 
+main {
+    margin-bottom: 100px;
+}
+
 body.modal-open {
     overflow: hidden;
 }
 
 h1 {
     color: var(--title-color-secondary);
-    margin-right: 100px;
 }
 
 .logo img {
     height: 50px;
-    margin-left: 100px;
+    margin: 40px 0;
 }
 
 img {
