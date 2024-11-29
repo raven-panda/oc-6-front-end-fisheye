@@ -30,7 +30,7 @@
             <li role="option" id="filter-date" aria-selected="false" tabindex="-1" data-value="date"><span>Date</span></li>
             <li role="option" id="filter-title" aria-selected="false" tabindex="-1" data-value="title"><span>Titre</span></li>
           </ul>
-          <button id="photograph-filter" name="photographFilter" tabindex="0" type="button" aria-haspopup="listbox" aria-expanded="false" role="button">
+          <button id="photograph-filter" name="photographFilter" tabindex="0" type="button" aria-haspopup="listbox" aria-expanded="false">
             <span id="photograph-filter-label"></span>
           </button>
           <svg id="filter-dropdown-icon" width="16" height="11" viewBox="0 0 16 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
           </svg>
         </div>
       </form>
-      <section class="photograph-album-content"></section>
+      <div class="photograph-album-content"></div>
     </main>
     <aside class="photographer-details">
       <div>
@@ -51,7 +51,7 @@
         <p><span id="photographer-details-price"></span>€ / jour</p>
       </div>
     </aside>
-    <div id="lightbox_modal" class="modal" aria-label="image closeup view">
+    <dialog id="lightbox_modal" class="modal" aria-label="image closeup view">
       <div class="modal-content">
         <div class="lightbox_modal-picture-navigation">
           <button type="button" class="picture-nav previous-picture" aria-label="Image précédente" tabindex="-1">
@@ -73,8 +73,8 @@
           </svg>
         </button>
       </div>
-    </div>
-    <div class="modal" id="contact_modal">
+    </dialog>
+    <dialog class="modal" id="contact_modal">
       <section class="modal-content">
         <header>
           <h2>Contactez-moi <br><span id="contactPhotographerName"></span></h2>
@@ -104,7 +104,7 @@
           <button class="contact_button">Envoyer</button>
         </form>
       </section>
-		</div>
+		</dialog>
     <script type="module" src="./scripts/pages/photographer.js" async></script>
   </body>
 </html>

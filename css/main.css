@@ -28,6 +28,10 @@ body.modal-open {
     overflow: hidden;
 }
 
+dialog {
+    padding: 0;
+}
+
 h1 {
     color: var(--title-color-secondary);
 }

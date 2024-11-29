@@ -33,7 +33,7 @@ export default function ContactFormUtils() {
     const displayModal = () => {
         const modal = document.querySelector("#contact_modal");
         modalUtils.disablePageTabIndex();
-        modal.classList.add('active');
+        modal.setAttribute("open", true);
         bodyContainer.classList.add("modal-open");
     }
     
@@ -43,7 +43,7 @@ export default function ContactFormUtils() {
     const closeModal = () => {
         const modal = document.querySelector("#contact_modal");
         modalUtils.enablePageTabIndex();
-        modal.classList.remove('active');
+        modal.removeAttribute("open")
         bodyContainer.classList.remove("modal-open");
     }
 

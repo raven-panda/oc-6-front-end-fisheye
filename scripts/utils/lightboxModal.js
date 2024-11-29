@@ -27,7 +27,7 @@ export default function LightboxModalUtils() {
     
     modalUtils.disablePageTabIndex();
     enableModalTabIndex();
-    lightboxModal.classList.add("active");
+    lightboxModal.setAttribute("open", true);
     bodyContainer.classList.add("modal-open");
     if (selected?.video) {
       displayVideo(urlUtils.getMediaUrl(photographerId, currentMedia.video), currentMedia.title, "video/mp4");
@@ -41,7 +41,7 @@ export default function LightboxModalUtils() {
    * Callback of clicking on close lightbox modal button event
    */
   function closeModal() {
-    lightboxModal.classList.remove("active");
+    lightboxModal.removeAttribute("open")
     bodyContainer.classList.remove("modal-open");
     disableModalTabIndex();
     modalUtils.enablePageTabIndex();
