@@ -85,7 +85,7 @@ export default function PhotographerUtils() {
     
     filterButtonLabel.textContent = filterLabels[value].label;
     
-    filterButton.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
+    filterOptionListContainer.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
     urlUtils.setParam("sortFilter", filterLabels[value].value)
     albumPhotographUtils.updateAlbum(filterLabels[value].value);
   }
@@ -141,7 +141,7 @@ export default function PhotographerUtils() {
 
     filterButtonLabel.textContent = filterLabels[value].label;
     
-    filterButton.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
+    filterOptionListContainer.setAttribute("aria-activedescendant", "filter-" + filterLabels[value].value);
     urlUtils.setParam("sortFilter", filterLabels[value].value)
     albumPhotographUtils.updateAlbum(filterLabels[value].value);
     filterSelectList.focus();

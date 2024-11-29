@@ -7,7 +7,7 @@ export default function ModalUtils() {
   const getElementsToToggle = () => {
     return [
       document.querySelector(".logo"),
-      document.querySelector(".filter-options"),
+      document.querySelector("#photograph-filter"),
       document.querySelector("#contactButton"),
       ...document.querySelectorAll(".photograph-album-item a"),
       ...document.querySelectorAll(".photograph-album-item .photograph-album_like-button")
