@@ -14,6 +14,7 @@ async function photographerPage() {
   const photographerUtils = PhotographerUtils();
   const photographerId = params.get("photographerId");
 
+  // If no photographer ID is specified in query params, redirecting user to index page
   if (!photographerId) window.location = "./index.html";
 
   /**

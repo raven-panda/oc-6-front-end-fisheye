@@ -34,6 +34,7 @@ export function photographerTemplate(data) {
     }
 
     /**
+     * Create user card description and returns display data function, when called displays each element into specified parents
      * @returns { HTMLElement } The displayData function to render user description displayed in paragraph page
      */
     function getUserCardDescriptionDOM() {
@@ -51,6 +52,7 @@ export function photographerTemplate(data) {
     }
 
     /**
+     * Create user card picture and returns display data function, when called displays the element into specified parent
      * @returns { HTMLElement } The displayData function to render picture displayed in paragraph page
      */
     function getUserCardPictureDOM() {
@@ -62,8 +64,12 @@ export function photographerTemplate(data) {
         }
         
         return { displayData }
-    }
+    }    
 
+    /**
+     * Create user card price paragraph and returns display data function, when called displays the element into specified parent
+     * @returns { HTMLElement } The displayData function to render picture displayed in paragraph page
+     */
     function getUserCardPriceDOM() {
         const priceParagraph = createTextElement('p', price + "€/jour", "price", "photographer-card");
 

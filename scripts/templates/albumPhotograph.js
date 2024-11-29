@@ -4,8 +4,8 @@ import UrlUtils from "../utils/urlUtils.js";
 
 /**
  * Album photograph template function
- * @param {*} data The media to create
- * @returns The DOM element and the displayData function to render the element
+ * @param {any} data The media to create
+ * @returns {{article: HTMLElement, displayMedia: (parent: HTMLElement) => void}} The DOM element and the displayData function to render the element
  */
 export function albumPhotographTemplate(data) {
   const { id, photographerId, title, image, video, likes } = data;
@@ -47,6 +47,10 @@ export function albumPhotographTemplate(data) {
     return { articleDOM, displayData }
   }
 
+  /**
+   * Create a media template (video or img) 
+   * @returns {{ displayMedia: (parent: HTMLElement) => void }}
+   */
   function getAlbumItemMediaDOM() {
     const media = mediaTemplate();
     let mediaDOM;

@@ -12,7 +12,7 @@ export function mediaTemplate() {
    * @param {string|number} width Width of the picture
    * @param {string|number} height Height of the picture
    * @param {...string} classList Optional classes for HTML "img" element
-   * @returns DOM element and the displayData function to render the element
+   * @returns {{img: HTMLImageElement, displayMedia: (parent: HTMLElement) => void}} DOM element and the displayData function to render the element
    */
   function mediaImageTemplate(src, alt, width, height, ...classList) {
     const img = document.createElement('img');
@@ -36,7 +36,7 @@ export function mediaTemplate() {
    * @param {string} type MIME type of the video
    * @param {boolean} enableAutoplay
    * @param {...string} classList Optional classes for HTML video element
-   * @returns DOM element and the displayData function to render the element
+   * @returns {{video: HTMLVideoElement, displayMedia: (parent: HTMLElement) => void}} DOM element and the displayData function to render the element
    */
   function mediaVideoTemplate(src, alt, type, enableAutoplay, ...classList) {
     const video = document.createElement('video');

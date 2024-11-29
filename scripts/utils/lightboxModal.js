@@ -56,7 +56,7 @@ export default function LightboxModalUtils() {
   }
 
   /**
-   * Wipes events in case doublon was created
+   * Wipes events in case doublon was created, called when album is regenerated
    */
   function wipeEvents() {
     closeModalButton.removeEventListener("click", closeModal);
@@ -72,8 +72,6 @@ export default function LightboxModalUtils() {
    * Creates events for lightbox modal
    */
   function createEvents() {
-    wipeEvents();
-
     closeModalButton.addEventListener("click", closeModal);
     mediaNavPreviousButton.addEventListener("click", previousItem);
     mediaNavNextButton.addEventListener("click", nextItem);
@@ -167,6 +165,6 @@ export default function LightboxModalUtils() {
     mediaNavNextButton.setAttribute("tabindex", "0");
   } 
  
-  return { displayData, closeModal, createEvents }
+  return { displayData, closeModal, createEvents, wipeEvents }
 
 }

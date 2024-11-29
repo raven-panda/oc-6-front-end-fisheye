@@ -1,9 +1,9 @@
 /**
  * Creates a text element by providing a element tagname, text content and optional classes
- * @param tag Tag of the HTML element
- * @param textContent Content of the HTML text element
- * @param classList Classes of the HTML element
- * @returns DOM element and displayMedia to render the element
+ * @param {string} tag Tag of the HTML element
+ * @param {string} textContent Content of the HTML text element
+ * @param {...string} classList Classes of the HTML element
+ * @returns {{element: HTMLElement, displayMedia: (parent: HTMLElement) => void}} DOM element and displayMedia to render the element
  */
 export function createTextElement(tag, textContent, ...classList) {
   const element = document.createElement(tag);
@@ -19,11 +19,11 @@ export function createTextElement(tag, textContent, ...classList) {
 
 /**
  * Creates a SVG element by providing a width, height, viewbox and paths
- * @param width Width of the SVG
- * @param height Height of the SVG
- * @param viewbox Viewbox of the SVG
- * @param paths Paths to render in the SVG
- * @returns DOM svg element and displayMedia to render the element
+ * @param {string|number} width Width of the SVG
+ * @param {string|number} height Height of the SVG
+ * @param {string} viewbox Viewbox of the SVG
+ * @param {string[]} paths Paths to render in the SVG
+ * @returns {{element: SVGSVGElement, displayMedia: (parent: HTMLElement) => void}} DOM svg element and displayMedia to render the element
  */
 export function createSvgElement(width, height, viewbox, paths) {
   const element = document.createElementNS("http://www.w3.org/2000/svg", "svg");

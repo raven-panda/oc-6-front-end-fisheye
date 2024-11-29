@@ -8,11 +8,52 @@ export default function AlbumPhotographUtils() {
   const urlUtils = UrlUtils();
   let photographersMedias;
 
+  const mouseEnterOrFocusVideoEvent = (e) => {
+    const currentTarget = e?.target instanceof HTMLAnchorElement ? e.target.querySelector("video") : e.target;
+    currentTarget.play();
+  }
+
+  const mouseLeaveOrBlurVideoEvent = (e) => {
+    const currentTarget = e?.target instanceof HTMLAnchorElement ? e.target.querySelector("video") : e.target;
+    currentTarget.pause();
+    currentTarget.currentTime = 0;
+  }
+
+  function wipeEvents() {
+    const albumItemsDOM = albumPhotograph.querySelectorAll(".photograph-album-item");
+
+    albumItemsDOM.forEach(mediaDOM => {
+      // Media link event removing for lightbox modal openning
+      const link = mediaDOM.querySelector('a');
+      link.removeEventListener("click", selectAlbumtItemEvent);
+      link.removeEventListener("keydown", selectAlbumtItemEvent);
+
+      // Removing video event on hover or focus
+      const video = mediaDOM.querySelector("video");
+      if (video) {
+        video.removeEventListener('mouseenter', mouseEnterOrFocusVideoEvent);
+        video.removeEventListener('mouseleave', mouseLeaveOrBlurVideoEvent);
+
+        link.removeEventListener('focus', mouseEnterOrFocusVideoEvent);
+        link.removeEventListener('blur', mouseLeaveOrBlurVideoEvent);
+      }
+
+      // Removing like button event
+      const likeButtonDOM = mediaDOM.querySelector(".photograph-album-item .photograph-album_like-button");
+      likeButtonDOM.removeEventListener("click", incrementLikeEvent);
+    })
+
+    // Wiping events of lightbox modal
+    lightboxModalUtils.wipeEvents();
+  }
+
   /**
    * Create event listeners on photographer album
-   * @param _photographersMedias Medias data of a photographer
+   * @param {any[]} _photographersMedias Medias data of a photographer
    */
   function createEvents(_photographersMedias) {
+    wipeEvents();
+
     photographersMedias = _photographersMedias;
     
     const albumItemsDOM = albumPhotograph.querySelectorAll(".photograph-album-item");
@@ -26,21 +67,11 @@ export default function AlbumPhotographUtils() {
       // Video event binding on hover or focus
       const video = mediaDOM.querySelector("video");
       if (video) {
-        video.addEventListener('mouseenter', () => {
-          video.play();
-        });
-        video.addEventListener('mouseleave', () => {
-          video.pause();
-          video.currentTime = 0;
-        });
+        video.addEventListener('mouseenter', mouseEnterOrFocusVideoEvent);
+        video.addEventListener('mouseleave', mouseLeaveOrBlurVideoEvent);
 
-        link.addEventListener('focus', () => {
-          video.play();
-        });
-        link.addEventListener('blur', () => {
-          video.pause();
-          video.currentTime = 0;
-        });
+        link.addEventListener('focus', mouseEnterOrFocusVideoEvent);
+        link.addEventListener('blur', mouseLeaveOrBlurVideoEvent);
       }
 
       const likeButtonDOM = mediaDOM.querySelector(".photograph-album-item .photograph-album_like-button");
@@ -52,8 +83,7 @@ export default function AlbumPhotographUtils() {
 
   /**
    * Event callback on click or key press on album item
-   * @param e Keyboard Event
-   * @returns 
+   * @param {KeyboardEvent} e Keyboard Event
    */
   const selectAlbumtItemEvent = (e) => {       
     if (e.code && (e.code !== "Space" && e.code !== "Enter")) return;
@@ -71,6 +101,10 @@ export default function AlbumPhotographUtils() {
     lightboxModalUtils.displayData(photographersMedias, media);
   }
 
+  /**
+   * Increments likes amount of media and total likes displayed at right bottom of the page 
+   * @param {KeyboardEvent|MouseEvent} e Event fired
+   */
   const incrementLikeEvent = (e) => {    
     const mediaDOM = e.currentTarget.parentNode.parentNode;
     // Incrementing like of the media
@@ -95,6 +129,8 @@ export default function AlbumPhotographUtils() {
     if (!photographersMedias) return;
     
     const albumPhotograph = document.querySelector(".photograph-album-content");
+
+    // Switch on filter and sorting medias array using Array.sort method
     switch (filter) {
       case "popular":
         photographersMedias.sort((a, b) => b.likes - a.likes);
@@ -110,12 +146,17 @@ export default function AlbumPhotographUtils() {
         break;
     }
 
+    // Erasing previous album
     albumPhotograph.innerHTML = "";
+
+    // Templating each medias and displaying it in album
     photographersMedias.forEach(media => {
       const albumItemDOM = albumPhotographTemplate(media);
 
       albumItemDOM.displayData(albumPhotograph);
     })
+
+    // Regenerate events of medias DOM in album
     createEvents(photographersMedias);
   }
 
