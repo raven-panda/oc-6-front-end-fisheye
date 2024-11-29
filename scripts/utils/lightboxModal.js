@@ -48,28 +48,39 @@ export default function LightboxModalUtils() {
   }
 
   /**
-   * Creates events for lightbox modal
+   * Callback of clicking on close lightbox modal button event
    */
-  function createEvents() {
+  function closeModalEvent(e) {
+    if (!lightboxModal.open === "true" || e.key !== "Escape") return;
+    closeModal();
+  }
+
+  /**
+   * Wipes events in case doublon was created
+   */
+  function wipeEvents() {
     closeModalButton.removeEventListener("click", closeModal);
     mediaNavPreviousButton.removeEventListener("click", previousItem);
     mediaNavNextButton.removeEventListener("click", nextItem);
+
+    document.removeEventListener("keydown", previousItemKeyEvent);
+    document.removeEventListener("keydown", nextItemKeyEvent)
+    document.removeEventListener("keydown", closeModalEvent)
+  }
+
+  /**
+   * Creates events for lightbox modal
+   */
+  function createEvents() {
+    wipeEvents();
+
     closeModalButton.addEventListener("click", closeModal);
     mediaNavPreviousButton.addEventListener("click", previousItem);
     mediaNavNextButton.addEventListener("click", nextItem);
 
-    document.addEventListener("keydown", (e) => {
-      if (!lightboxModal.classList.contains("active") || e.key !== "ArrowLeft") return;
-      previousItem();
-    });
-    document.addEventListener("keydown",  (e) => {
-      if (!lightboxModal.classList.contains("active") || e.key !== "ArrowRight") return;
-      nextItem();
-    });
-    document.addEventListener("keydown",  (e) => {
-      if (!lightboxModal.classList.contains("active") || e.key !== "Escape") return;
-      closeModal();
-    });
+    document.addEventListener("keydown", previousItemKeyEvent);
+    document.addEventListener("keydown", nextItemKeyEvent);
+    document.addEventListener("keydown", closeModalEvent);
   }
 
   /**
@@ -110,6 +121,15 @@ export default function LightboxModalUtils() {
   }
 
   /**
+   * Arrow right (previous media) key event callback (function binded to keydown event for arrow navigation in lightbox)
+   * Displays the next element in **medias** array.
+   */
+  const nextItemKeyEvent = (e) => {
+    if (!lightboxModal.open === "true" || e.key !== "ArrowRight") return;
+    nextItem();
+  }
+
+  /**
    * Previous media button event callback.
    * Displays previous element in **medias** array.
    */
@@ -118,6 +138,15 @@ export default function LightboxModalUtils() {
     const selected = index > 0 && index <= medias.length - 1 ? medias[index - 1] : medias[medias.length - 1];
 
     displayData(medias, selected);
+  }
+
+  /**
+   * Arrow left (previous media) key event callback (function binded to keydown event for arrow navigation in lightbox)
+   * Displays previous element in **medias** array.
+   */
+  const previousItemKeyEvent = (e) => {
+    if (!lightboxModal.open === "true" || e.key !== "ArrowLeft") return;
+    previousItem();
   }
 
   /**

@@ -319,17 +319,18 @@ form#photograph-filter-form .photograph-filter-container select {
     align-items: self-start;
 }
 
-.modal form input {
+.modal form input, .modal form textarea#contactMessage {
     width: 100%;
-    height: 68px;
+    padding: 23px;
+    box-sizing: border-box;
     border: none;
     border-radius: 5px;
+    font-size: 1.25rem;
+    font-family: "DM Sans", sans-serif;
 }
+
 .modal form textarea#contactMessage {
-    width: 100%;
     height: 170px;
-    border: none;
-    border-radius: 5px;
     resize: none;
 }
 
