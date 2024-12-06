@@ -8,6 +8,7 @@ export default function ModalUtils() {
     return [
       document.querySelector(".logo"),
       document.querySelector("#photograph-filter"),
+      document.querySelector(".photograph_description"),
       document.querySelector("#contactButton"),
       ...document.querySelectorAll(".photograph-album-item a"),
       ...document.querySelectorAll(".photograph-album-item .photograph-album_like-button")

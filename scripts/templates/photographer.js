@@ -27,8 +27,8 @@ export function photographerTemplate(data) {
 
         img.displayData(link);
         article.appendChild(link);
-        userDescription.displayData(link, article, article);
-        userPrice.displayData(article);
+        userDescription.displayData(link, link, link);
+        userPrice.displayData(link);
 
         return article;
     }
@@ -41,6 +41,9 @@ export function photographerTemplate(data) {
         const fullNameTitle = createTextElement('h2', name, "photographer-card");
         const locationTitle = createTextElement('h3', city + ", " + country, "photographer-card");
         const taglineParagraph = createTextElement('p', tagline, "photographer-card");
+        fullNameTitle.element.ariaLabel = "Nom du photographe " + name;
+        locationTitle.element.ariaLabel = "Lieu du photographe " + locationTitle.element.textContent;
+        taglineParagraph.element.ariaLabel = "Slogan du photographe " + taglineParagraph.element.textContent;
 
         const displayData = (fullNameParent, locationParent, taglineParent) => {
             fullNameTitle.displayMedia(fullNameParent);
@@ -72,6 +75,7 @@ export function photographerTemplate(data) {
      */
     function getUserCardPriceDOM() {
         const priceParagraph = createTextElement('p', price + "€/jour", "price", "photographer-card");
+        priceParagraph.element.ariaLabel = "Prix du photographe " + price + "euros par jours";
 
         const displayData = (parent) => {
             priceParagraph.displayMedia(parent);
