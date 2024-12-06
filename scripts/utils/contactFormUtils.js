@@ -6,6 +6,7 @@ export default function ContactFormUtils() {
     const openContactModalButton = document.querySelector("#contactButton");
     const bodyContainer = document.querySelector("body");
     const contactForm = document.querySelector("#contact-form");
+    const modal = document.querySelector("#contact_modal");
 
     /**
      * Creates event listeners for contact modal
@@ -14,6 +15,8 @@ export default function ContactFormUtils() {
         closeContactModalButton.addEventListener("click", closeModal);
         openContactModalButton.addEventListener("click", displayModal);
         contactForm.addEventListener("submit", formSubmitCallback);
+
+        document.addEventListener("keydown", closeModalKeyEvent);
     }
 
     /**
@@ -35,7 +38,6 @@ export default function ContactFormUtils() {
      * Callback of clicking on open contact modal button event
      */
     const displayModal = () => {
-        const modal = document.querySelector("#contact_modal");
         modalUtils.disablePageTabIndex();
         modal.setAttribute("open", true);
         bodyContainer.classList.add("modal-open");
@@ -45,10 +47,14 @@ export default function ContactFormUtils() {
      * Callback of clicking on close contact modal button event
      */
     const closeModal = () => {
-        const modal = document.querySelector("#contact_modal");
         modalUtils.enablePageTabIndex();
         modal.removeAttribute("open")
         bodyContainer.classList.remove("modal-open");
+    }
+
+    const closeModalKeyEvent = (e) => {
+        if (!modal.open === "true" || e.key !== "Escape") return;
+        closeModal();
     }
 
     return { createEvents }
