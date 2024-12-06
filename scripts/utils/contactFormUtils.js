@@ -16,6 +16,10 @@ export default function ContactFormUtils() {
         contactForm.addEventListener("submit", formSubmitCallback);
     }
 
+    /**
+     * Form submission callback, logs data in the console
+     * @param {*} e Event of the submission
+     */
     const formSubmitCallback = (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
