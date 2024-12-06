@@ -7,6 +7,10 @@ import { photographerTemplate } from  "../templates/photographer.js";
 async function indexPage() {
   const photographerService = PhotographerService();
 
+  /**
+   * Templates HTML DOM for each photographers
+   * @param {any[]} photographers 
+   */
   const displayData = (photographers) => {
     const photographersSection = document.querySelector(".photographer_section");
   
@@ -17,6 +21,7 @@ async function indexPage() {
     });
   }
 
+  // Fetching photographers data
   const photographers = await photographerService.getPhotographers();
   displayData(photographers);
 }

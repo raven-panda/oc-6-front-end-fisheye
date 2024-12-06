@@ -27,7 +27,7 @@ export function PhotographerService() {
 
   /**
    * Calls **getPhotographersAndMedia** and return all photographers data from fetched JSON
-   * @returns {any[]} Every photographers data
+   * @returns {Promise<any[]>} Every photographers data
    */
   async function getPhotographers() {
     const photographersAndMedias = await getPhotographersAndMedia();    
@@ -37,7 +37,7 @@ export function PhotographerService() {
   /**
    * Calls **getPhotographers** and return data of the photographer specified with ID
    * @param {number} id Photographer ID
-   * @returns {any} This photographer data
+   * @returns {Promise<any>} This photographer data
    */
   async function getPhotographerById(id) {
     const photographersAndMedias = await getPhotographers();    
@@ -48,7 +48,7 @@ export function PhotographerService() {
   /**
    * Calls **getPhotographersAndMedia** and return data of the photographer's media specified with ID
    * @param {number} id Photographer ID
-   * @returns {any} Photographer's medias data
+   * @returns {Promise<any>} Photographer's medias data
    */
   async function getPhotographersMedias(id) {
     const photographersAndMedias = await getPhotographersAndMedia();    
