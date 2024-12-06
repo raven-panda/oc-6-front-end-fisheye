@@ -96,8 +96,6 @@ export default function AlbumPhotographUtils() {
     if (!mediaId || !media)
       return;
 
-    urlUtils.setParam("mediaId", mediaId); // find a way to use this instead of dataset
-
     lightboxModalUtils.displayData(photographersMedias, media);
   }
 
