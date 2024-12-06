@@ -30,6 +30,7 @@ body.modal-open {
 
 dialog {
     padding: 0;
+    border: none;
 }
 
 h1 {
